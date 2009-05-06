@@ -15,6 +15,7 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
 
   [AutoVersion]
   [PodPurler]
+  [Repository]
 
 =cut
 
