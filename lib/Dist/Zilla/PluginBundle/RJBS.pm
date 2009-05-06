@@ -35,6 +35,7 @@ sub bundle_config {
   push @plugins, (
     [ 'Dist::Zilla::Plugin::AutoVersion' => { major => $major_version } ],
     [ 'Dist::Zilla::Plugin::PodPurler'   => {                         } ],
+    [ 'Dist::Zilla::Plugin::Repository'  => {                         } ],
   );
 
   eval "require $_->[0]" or die for @plugins; ## no critic Carp
