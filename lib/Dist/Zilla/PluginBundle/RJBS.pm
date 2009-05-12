@@ -14,6 +14,7 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
   remove = PodVersion
 
   [AutoVersion]
+  [NextRelease]
   [PodPurler]
   [Repository]
 
@@ -35,6 +36,7 @@ sub bundle_config {
 
   push @plugins, (
     [ 'Dist::Zilla::Plugin::AutoVersion' => { major => $major_version } ],
+    [ 'Dist::Zilla::Plugin::NextRelease' => {                         } ],
     [ 'Dist::Zilla::Plugin::PodPurler'   => {                         } ],
     [ 'Dist::Zilla::Plugin::Repository'  => {                         } ],
   );
