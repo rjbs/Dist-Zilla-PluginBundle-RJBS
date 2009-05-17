@@ -12,8 +12,10 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
   [@Filter]
   bundle = @Classic
   remove = PodVersion
+  remove = MetaYAML
 
   [AutoVersion]
+  [MetaJSON]
   [NextRelease]
   [PodPurler]
   [Repository]
@@ -32,10 +34,13 @@ sub bundle_config {
   my @plugins = Dist::Zilla::PluginBundle::Filter->bundle_config({
     bundle => '@Classic',
     remove => [ 'PodVersion' ],
+    remove => [ 'MetaYAML' ],
+    remove => [ 'MetaYaml' ],
   });
 
   push @plugins, (
     [ 'Dist::Zilla::Plugin::AutoVersion' => { major => $major_version } ],
+    [ 'Dist::Zilla::Plugin::MetaJSON'    => {                         } ],
     [ 'Dist::Zilla::Plugin::NextRelease' => {                         } ],
     [ 'Dist::Zilla::Plugin::PodPurler'   => {                         } ],
     [ 'Dist::Zilla::Plugin::Repository'  => {                         } ],
