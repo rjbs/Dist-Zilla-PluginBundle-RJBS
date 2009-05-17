@@ -1,6 +1,6 @@
 package Dist::Zilla::PluginBundle::RJBS;
-
 # ABSTRACT: BeLike::RJBS when you build your dists
+
 use Moose;
 use Moose::Autobox;
 with 'Dist::Zilla::Role::PluginBundle';
@@ -12,8 +12,10 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
   [@Filter]
   bundle = @Classic
   remove = PodVersion
+  remove = MetaYAML
 
   [AutoVersion]
+  [MetaJSON]
   [NextRelease]
   [PodPurler]
   [Repository]
@@ -31,11 +33,12 @@ sub bundle_config {
 
   my @plugins = Dist::Zilla::PluginBundle::Filter->bundle_config({
     bundle => '@Classic',
-    remove => [ 'PodVersion' ],
+    remove => [ qw(PodVersion MetaYAML MetaYaml) ],
   });
 
   push @plugins, (
     [ 'Dist::Zilla::Plugin::AutoVersion' => { major => $major_version } ],
+    [ 'Dist::Zilla::Plugin::MetaJSON'    => {                         } ],
     [ 'Dist::Zilla::Plugin::NextRelease' => {                         } ],
     [ 'Dist::Zilla::Plugin::PodPurler'   => {                         } ],
     [ 'Dist::Zilla::Plugin::Repository'  => {                         } ],
