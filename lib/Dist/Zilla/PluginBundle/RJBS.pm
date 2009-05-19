@@ -28,8 +28,9 @@ sub bundle_config {
   my ($self, $arg) = @_;
   my $class = (ref $self) || $self;
 
-  my $major_version;
-  $major_version = defined $arg->{version} ? $arg->{version} : 0;
+  my $major_version = defined $arg->{version} ? $arg->{version} : 0;
+  my $format        = q<{{ $major }}.{{ cldr('yyDDD') }}>
+                    . sprintf '%01u', ($ENV{N} || 0);
 
   my @plugins = Dist::Zilla::PluginBundle::Filter->bundle_config({
     bundle => '@Classic',
@@ -37,11 +38,12 @@ sub bundle_config {
   });
 
   push @plugins, (
-    [ 'Dist::Zilla::Plugin::AutoVersion' => { major => $major_version } ],
-    [ 'Dist::Zilla::Plugin::MetaJSON'    => {                         } ],
-    [ 'Dist::Zilla::Plugin::NextRelease' => {                         } ],
-    [ 'Dist::Zilla::Plugin::PodPurler'   => {                         } ],
-    [ 'Dist::Zilla::Plugin::Repository'  => {                         } ],
+    [ 'Dist::Zilla::Plugin::AutoVersion' =>
+      { major => $major_version, format => $format } ],
+    [ 'Dist::Zilla::Plugin::MetaJSON'    => {      } ],
+    [ 'Dist::Zilla::Plugin::NextRelease' => {      } ],
+    [ 'Dist::Zilla::Plugin::PodPurler'   => {      } ],
+    [ 'Dist::Zilla::Plugin::Repository'  => {      } ],
   );
 
   eval "require $_->[0]" or die for @plugins; ## no critic Carp
