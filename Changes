@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          env var "N" now sets final digit of autoversion
+
+0.091370  2009-05-12
           replace MetaYAML with MetaJSON
 
 0.091320  2009-05-12
