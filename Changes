@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          env var "DEV" now causes _zzz version suffix
+
+0.091390
           env var "N" now sets final digit of autoversion
 
 0.091370  2009-05-12

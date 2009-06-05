@@ -30,7 +30,8 @@ sub bundle_config {
 
   my $major_version = defined $arg->{version} ? $arg->{version} : 0;
   my $format        = q<{{ $major }}.{{ cldr('yyDDD') }}>
-                    . sprintf '%01u', ($ENV{N} || 0);
+                    . sprintf('%01u', ($ENV{N} || 0))
+                    . ($ENV{DEV} ? (sprintf '_%03u', $ENV{DEV}) : '') ;
 
   my @plugins = Dist::Zilla::PluginBundle::Filter->bundle_config({
     bundle => '@Classic',
