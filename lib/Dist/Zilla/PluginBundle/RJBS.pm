@@ -39,17 +39,16 @@ sub bundle_config {
   });
 
   push @plugins, (
-    [ 'Dist::Zilla::Plugin::AutoVersion' =>
-      { major => $major_version, format => $format } ],
-    [ 'Dist::Zilla::Plugin::MetaJSON'    => {      } ],
-    [ 'Dist::Zilla::Plugin::NextRelease' => {      } ],
-    [ 'Dist::Zilla::Plugin::PodPurler'   => {      } ],
-    [ 'Dist::Zilla::Plugin::Repository'  => {      } ],
+    [ 'Dist::Zilla::Plugin::AutoVersion' => { major => $major_version } ],
+    [ 'Dist::Zilla::Plugin::MetaJSON'    => {                         } ],
+    [ 'Dist::Zilla::Plugin::NextRelease' => {                         } ],
+    [ 'Dist::Zilla::Plugin::PodPurler'   => {                         } ],
+    [ 'Dist::Zilla::Plugin::Repository'  => {                         } ],
   );
 
   eval "require $_->[0]" or die for @plugins; ## no critic Carp
 
-  @plugins->map(sub { $_->[1]{'=name'} = "$class/$_->[0]" });
+  @plugins->map(sub { $_->[1]{plugin_name} = "$class/$_->[0]" });
 
   return @plugins;
 }

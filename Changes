@@ -1,12 +1,15 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+<<<<<<< HEAD:Changes
           env var "DEV" now causes _zzz version suffix
 
 0.091390
           env var "N" now sets final digit of autoversion
 
 0.091370  2009-05-12
+=======
+>>>>>>> origin/master:Changes
           replace MetaYAML with MetaJSON
 
 0.091320  2009-05-12
