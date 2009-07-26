@@ -38,17 +38,19 @@ sub bundle_config {
     remove => [ qw(PodVersion MetaYAML MetaYaml) ],
   });
 
-  push @plugins, (
-    [ 'Dist::Zilla::Plugin::AutoVersion' => { major => $major_version } ],
-    [ 'Dist::Zilla::Plugin::MetaJSON'    => {                         } ],
-    [ 'Dist::Zilla::Plugin::NextRelease' => {                         } ],
-    [ 'Dist::Zilla::Plugin::PodPurler'   => {                         } ],
-    [ 'Dist::Zilla::Plugin::Repository'  => {                         } ],
+  my $prefix = 'Dist::Zilla::Plugin::';
+  my @extra = map {[ "$class/$prefix$_->[0]" => "$prefix$_->[0]" => $_->[1] ]}
+  (
+    [ AutoVersion => { major => $major_version } ],
+    [ MetaJSON    => {                         } ],
+    [ NextRelease => {                         } ],
+    [ PodPurler   => {                         } ],
+    [ Repository  => {                         } ],
   );
 
-  eval "require $_->[0]" or die for @plugins; ## no critic Carp
+  push @plugins, @extra;
 
-  @plugins->map(sub { $_->[1]{plugin_name} = "$class/$_->[0]" });
+  eval "require $_->[1]" or die for @plugins; ## no critic Carp
 
   return @plugins;
 }
