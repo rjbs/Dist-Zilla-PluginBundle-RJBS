@@ -41,11 +41,11 @@ sub bundle_config {
   my $prefix = 'Dist::Zilla::Plugin::';
   my @extra = map {[ "$class/$prefix$_->[0]" => "$prefix$_->[0]" => $_->[1] ]}
   (
-    [ AutoVersion => { major => $major_version } ],
-    [ MetaJSON    => {                         } ],
-    [ NextRelease => {                         } ],
-    [ PodPurler   => {                         } ],
-    [ Repository  => {                         } ],
+    [ AutoVersion => { major => $major_version, format => $format } ],
+    [ MetaJSON    => {                                            } ],
+    [ NextRelease => {                                            } ],
+    [ PodPurler   => {                                            } ],
+    [ Repository  => {                                            } ],
   );
 
   push @plugins, @extra;

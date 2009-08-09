@@ -1,5 +1,8 @@
 Revision history for {{$dist->name}}
 
+0.092210  2009-08-09
+          restore the functioning of DEV and N environment variables
+
 0.092070  2009-07-26
           updates to work with new Dist::Zilla
 
