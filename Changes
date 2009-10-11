@@ -1,5 +1,8 @@
 Revision history for {{$dist->name}}
 
+0.092830  2009-10-10
+          make 'dzil rjv' match the rest of the code, time-zone wise
+
 0.092361  2009-08-24
           rjbs lives in Bethlehem, PA
           number his releases according to the date in his local time zone

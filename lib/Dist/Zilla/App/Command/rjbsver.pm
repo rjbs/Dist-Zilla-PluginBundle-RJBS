@@ -9,7 +9,7 @@ use DateTime ();
 sub command_names { qw(rjbsver rjv) }
 
 sub run {
-  my $now = DateTime->now(time_zone => 'GMT');
+  my $now = DateTime->now(time_zone => 'America/New_York');
 
   printf "Current version mantissa, assuming N=0, is %s0\n",
     $now->format_cldr('yyDDD');
