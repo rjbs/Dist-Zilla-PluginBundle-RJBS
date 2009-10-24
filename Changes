@@ -1,5 +1,8 @@
 Revision history for {{$dist->name}}
 
+0.092971  2009-10-24
+          bring all prereqs for Pod::Weaver up to date
+
 0.092970  2009-10-24
           use Pod::Weaver, not Pod::Purler
 
