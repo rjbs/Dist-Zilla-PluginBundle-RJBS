@@ -17,7 +17,7 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
   [AutoVersion]
   [MetaJSON]
   [NextRelease]
-  [PodPurler]
+  [PodWeaver]
   [Repository]
 
 =cut
@@ -50,7 +50,7 @@ sub bundle_config {
     ],
     [ MetaJSON     => { } ],
     [ NextRelease  => { } ],
-    [ PodPurler    => { } ],
+    [ PodWeaver    => { } ],
     [ Repository   => { } ],
   );
 

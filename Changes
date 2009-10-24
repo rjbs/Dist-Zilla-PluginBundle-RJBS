@@ -1,5 +1,8 @@
 Revision history for {{$dist->name}}
 
+0.092970  2009-10-24
+          use Pod::Weaver, not Pod::Purler
+
 0.092830  2009-10-10
           make 'dzil rjv' match the rest of the code, time-zone wise
 
