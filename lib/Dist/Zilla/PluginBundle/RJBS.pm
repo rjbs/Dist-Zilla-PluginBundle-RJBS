@@ -55,7 +55,7 @@ sub bundle_config {
     ],
     [ MetaJSON     => { } ],
     [ NextRelease  => { } ],
-    [ PodWeaver    => { } ],
+    [ PodWeaver    => { config_plugin => '@RJBS' } ],
     [ Repository   => { } ],
   );
 
