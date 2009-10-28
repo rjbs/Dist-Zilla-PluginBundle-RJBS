@@ -1,5 +1,8 @@
 Revision history for {{$dist->name}}
 
+0.093000  2009-10-27
+          now there's @RJBS for Pod::Weaver, too!
+
 0.092971  2009-10-24
           bring all prereqs for Pod::Weaver up to date
 
