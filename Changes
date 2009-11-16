@@ -1,5 +1,8 @@
 Revision history for {{$dist->name}}
 
+0.093200  2009-11-16
+          stop removing MetaYAML so cpants can index my dists
+
 0.093000  2009-10-27
           now there's @RJBS for Pod::Weaver, too!
 

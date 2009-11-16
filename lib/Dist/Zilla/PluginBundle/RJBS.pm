@@ -39,7 +39,7 @@ sub bundle_config {
     name    => "$class/Classic",
     payload => {
       bundle => '@Classic',
-      remove => [ qw(PodVersion MetaYAML MetaYaml) ],
+      remove => [ qw(PodVersion) ],
     },
   });
 
