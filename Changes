@@ -1,5 +1,8 @@
 Revision history for {{$dist->name}}
 
+{{$NEXT}}
+          allow "task" option to build a task with TaskWeaver
+
 0.093200  2009-11-16
           stop removing MetaYAML so cpants can index my dists
 

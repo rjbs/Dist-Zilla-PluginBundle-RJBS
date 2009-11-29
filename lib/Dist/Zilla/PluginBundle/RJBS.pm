@@ -29,11 +29,7 @@ sub bundle_config {
   my $class = (ref $self) || $self;
 
   my $arg = $section->{payload};
-
-  my $major_version = defined $arg->{version} ? $arg->{version} : 0;
-  my $format        = q<{{ $major }}.{{ cldr('yyDDD') }}>
-                    . sprintf('%01u', ($ENV{N} || 0))
-                    . ($ENV{DEV} ? (sprintf '_%03u', $ENV{DEV}) : '') ;
+  my $is_task = $arg->{task};
 
   my @plugins = Dist::Zilla::PluginBundle::Filter->bundle_config({
     name    => "$class/Classic",
@@ -43,19 +39,33 @@ sub bundle_config {
     },
   });
 
+  my $version_format;
+  my $major_version = 0;
+
+  if ($is_task) {
+    $version_format = q<{{ cldr('yyyyMMdd') }}.>
+                    . sprintf('%03u', ($ENV{N} || 0))
+                    . ($ENV{DEV} ? (sprintf '_%03u', $ENV{DEV}) : '') ;
+  } else {
+    $major_version  = defined $arg->{version} ? $arg->{version} : 0;
+    $version_format = q<{{ $major }}.{{ cldr('yyDDD') }}>
+                    . sprintf('%01u', ($ENV{N} || 0))
+                    . ($ENV{DEV} ? (sprintf '_%03u', $ENV{DEV}) : '') ;
+  }
+
   my $prefix = 'Dist::Zilla::Plugin::';
   my @extra = map {[ "$class/$prefix$_->[0]" => "$prefix$_->[0]" => $_->[1] ]}
   (
     [
       AutoVersion => {
         major     => $major_version,
-        format    => $format,
+        format    => $version_format,
         time_zone => 'America/New_York',
       }
     ],
     [ MetaJSON     => { } ],
     [ NextRelease  => { } ],
-    [ PodWeaver    => { config_plugin => '@RJBS' } ],
+    [ ($is_task ? 'TaskWeaver' : 'PodWeaver') => { config_plugin => '@RJBS' } ],
     [ Repository   => { } ],
   );
 
