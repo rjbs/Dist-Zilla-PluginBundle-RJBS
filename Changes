@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          replace WikiDoc with List
 
 0.093330  2009-11-29 12:04:56 America/New_York
           allow "task" option to build a task with TaskWeaver

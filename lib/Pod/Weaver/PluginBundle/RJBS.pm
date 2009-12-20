@@ -9,16 +9,16 @@ Equivalent to:
 
 =for :list
 * C<@Default>
-* C<-WikiDoc>
-* C<-List>
+* C<-Transformer> with L<Pod::Elemental::Transformer::List>
 
 =cut
 
 sub mvp_bundle_config {
   return (
     [ '@RJBS/Default', 'Pod::Weaver::PluginBundle::Default', {} ],
-    [ '@RJBS/WikiDoc', 'Pod::Weaver::Plugin::WikiDoc',       {} ],
-    [ '@RJBS/List',    'Pod::Weaver::Plugin::List',          {} ],
+    [ '@RJBS/List',    'Pod::Weaver::Plugin::Transformer',
+      { 'transformer' => 'List' }
+    ],
   );
 }
 
