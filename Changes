@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          fix docs (we do not exclude MetaYAML anymore)
+          add AutoPrereq
+          require latest Pod::Weaver
 
 0.093580  2009-12-24 21:29:10 America/New_York
           replace WikiDoc with List
