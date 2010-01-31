@@ -55,6 +55,7 @@ sub bundle_config {
   my $prefix = 'Dist::Zilla::Plugin::';
   my @extra = map {[ "$class/$prefix$_->[0]" => "$prefix$_->[0]" => $_->[1] ]}
   (
+    [ AutoPrereq  => {} ],
     [
       AutoVersion => {
         major     => $major_version,
