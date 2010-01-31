@@ -12,7 +12,6 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
   [@Filter]
   bundle = @Classic
   remove = PodVersion
-  remove = MetaYAML
 
   [AutoVersion]
   [MetaJSON]
