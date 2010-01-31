@@ -22,6 +22,7 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
 =cut
 
 use Dist::Zilla::PluginBundle::Filter;
+use Dist::Zilla::PluginBundle::Git;
 
 sub bundle_config {
   my ($self, $section) = @_;
@@ -35,6 +36,13 @@ sub bundle_config {
     payload => {
       bundle => '@Classic',
       remove => [ qw(PodVersion) ],
+    },
+  });
+
+  push @plugins, Dist::Zilla::PluginBundle::Git->bundle_config({
+    name    => "$class/Git",
+    payload => {
+      tag_format => '%v',
     },
   });
 
@@ -67,13 +75,9 @@ sub bundle_config {
     [ NextRelease  => { } ],
     [ ($is_task ? 'TaskWeaver' : 'PodWeaver') => { config_plugin => '@RJBS' } ],
     [ Repository   => { } ],
-
-    [ '@Git'       => { tag_format => '%v' } ],
   );
 
   push @plugins, @extra;
-
-  eval "require $_->[1]" or die for @plugins; ## no critic Carp
 
   return @plugins;
 }
