@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          include @Git (finally)
 
 0.100310  2010-01-31 15:41:03 America/New_York
           fix docs (we do not exclude MetaYAML anymore)

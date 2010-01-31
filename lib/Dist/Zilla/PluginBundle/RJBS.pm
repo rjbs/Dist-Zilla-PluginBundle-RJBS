@@ -67,6 +67,8 @@ sub bundle_config {
     [ NextRelease  => { } ],
     [ ($is_task ? 'TaskWeaver' : 'PodWeaver') => { config_plugin => '@RJBS' } ],
     [ Repository   => { } ],
+
+    [ '@Git'       => { tag_format => '%v' } ],
   );
 
   push @plugins, @extra;
