@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.100490  2010-02-18 13:20:23 America/New_York
           include @Git (finally)
 
 0.100310  2010-01-31 15:41:03 America/New_York
