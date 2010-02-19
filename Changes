@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          @Git must come after NextRelease (thanks, jquelin)
 
 0.100490  2010-02-18 13:20:23 America/New_York
           include @Git (finally)

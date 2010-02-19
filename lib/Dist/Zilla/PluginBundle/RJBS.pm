@@ -39,13 +39,6 @@ sub bundle_config {
     },
   });
 
-  push @plugins, Dist::Zilla::PluginBundle::Git->bundle_config({
-    name    => "$class/Git",
-    payload => {
-      tag_format => '%v',
-    },
-  });
-
   my $version_format;
   my $major_version = 0;
 
@@ -78,6 +71,13 @@ sub bundle_config {
   );
 
   push @plugins, @extra;
+
+  push @plugins, Dist::Zilla::PluginBundle::Git->bundle_config({
+    name    => "$class/Git",
+    payload => {
+      tag_format => '%v',
+    },
+  });
 
   return @plugins;
 }
