@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.100650  2010-03-06 14:19:04 America/New_York
+          name bundle contents better (for easier log reading)
+
 0.100500  2010-02-19 11:40:21 America/New_York
           @Git must come after NextRelease (thanks, jquelin)
 
