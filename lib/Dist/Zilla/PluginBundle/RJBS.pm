@@ -32,7 +32,7 @@ sub bundle_config {
   my $is_task = $arg->{task};
 
   my @plugins = Dist::Zilla::PluginBundle::Filter->bundle_config({
-    name    => "$class/Classic",
+    name    => $section->{name} . '/@Classic',
     payload => {
       bundle => '@Classic',
       remove => [ qw(PodVersion) ],
@@ -54,7 +54,7 @@ sub bundle_config {
   }
 
   my $prefix = 'Dist::Zilla::Plugin::';
-  my @extra = map {[ "$class/$prefix$_->[0]" => "$prefix$_->[0]" => $_->[1] ]}
+  my @extra = map {[ "$section->{name}/$_->[0]" => "$prefix$_->[0]" => $_->[1] ]}
   (
     [ AutoPrereq  => {} ],
     [
@@ -73,7 +73,7 @@ sub bundle_config {
   push @plugins, @extra;
 
   push @plugins, Dist::Zilla::PluginBundle::Git->bundle_config({
-    name    => "$class/Git",
+    name    => "$section->{name}/\@Git",
     payload => {
       tag_format => '%v',
     },
