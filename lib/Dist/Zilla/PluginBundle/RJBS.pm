@@ -3,6 +3,7 @@ package Dist::Zilla::PluginBundle::RJBS;
 
 use Moose;
 use Moose::Autobox;
+use Dist::Zilla 2;
 with 'Dist::Zilla::Role::PluginBundle';
 
 =head1 DESCRIPTION
@@ -12,8 +13,10 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
   [@Filter]
   bundle = @Classic
   remove = PodVersion
+  remove = PodCoverageTests
 
   [AutoVersion]
+  [MetaConfig]
   [MetaJSON]
   [NextRelease]
   [PodWeaver]
@@ -35,7 +38,7 @@ sub bundle_config {
     name    => $section->{name} . '/@Classic',
     payload => {
       bundle => '@Classic',
-      remove => [ qw(PodVersion) ],
+      remove => [ qw(PodVersion PodCoverageTests) ],
     },
   });
 
@@ -64,6 +67,7 @@ sub bundle_config {
         time_zone => 'America/New_York',
       }
     ],
+    [ MetaConfig   => { } ],
     [ MetaJSON     => { } ],
     [ NextRelease  => { } ],
     [ ($is_task ? 'TaskWeaver' : 'PodWeaver') => { config_plugin => '@RJBS' } ],
