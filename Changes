@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.100910  2010-04-01 12:32:12 America/New_York
           add manual_version
           update documentation
 
