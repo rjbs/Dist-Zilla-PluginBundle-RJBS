@@ -15,12 +15,17 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
   remove = PodVersion
   remove = PodCoverageTests
 
+  [AutoPrereq]
   [AutoVersion]
   [MetaConfig]
   [MetaJSON]
   [NextRelease]
   [PodWeaver]
   [Repository]
+
+If the C<task> argument is given to the bundle, PodWeaver is replaced with
+TaskWeaver.  If the C<manual_version> argument is given, AutoVersion is
+omitted.
 
 =cut
 
@@ -60,13 +65,15 @@ sub bundle_config {
   my @extra = map {[ "$section->{name}/$_->[0]" => "$prefix$_->[0]" => $_->[1] ]}
   (
     [ AutoPrereq  => {} ],
-    [
-      AutoVersion => {
-        major     => $major_version,
-        format    => $version_format,
-        time_zone => 'America/New_York',
-      }
-    ],
+    ($arg->{manual_version} ? () :
+      [
+        AutoVersion => {
+          major     => $major_version,
+          format    => $version_format,
+          time_zone => 'America/New_York',
+        }
+      ]
+    ),
     [ MetaConfig   => { } ],
     [ MetaJSON     => { } ],
     [ NextRelease  => { } ],
