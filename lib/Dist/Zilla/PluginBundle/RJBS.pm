@@ -36,7 +36,7 @@ omitted.
 
 =cut
 
-use Dist::Zilla::PluginBundle::Filter;
+use Dist::Zilla::PluginBundle::Basic;
 use Dist::Zilla::PluginBundle::Git;
 
 sub bundle_config {
@@ -53,7 +53,7 @@ sub bundle_config {
     "$section->{name}/TestRelease" => "${prefix}TestRelease" => {}
   ];
 
-  push @plugins, Dist::Zilla::PluginBundle::Classic->bundle_config({
+  push @plugins, Dist::Zilla::PluginBundle::Basic->bundle_config({
     name    => $section->{name} . '/@Basic',
     payload => { },
   });
