@@ -12,17 +12,19 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
 
   [TestRelease]
 
-  [@Filter]
-  bundle = @Classic
-  remove = PodVersion
-  remove = PodCoverageTests
+  [@Basic]
 
   [AutoPrereq]
   [AutoVersion]
+  [PkgVersion]
   [MetaConfig]
   [MetaJSON]
   [NextRelease]
+  [PodSyntaxTests]
+
   [PodWeaver]
+  config_plugin = @RJBS
+
   [Repository]
 
   [@Git]
@@ -51,12 +53,9 @@ sub bundle_config {
     "$section->{name}/TestRelease" => "${prefix}TestRelease" => {}
   ];
 
-  push @plugins, Dist::Zilla::PluginBundle::Filter->bundle_config({
-    name    => $section->{name} . '/@Classic',
-    payload => {
-      bundle => '@Classic',
-      remove => [ qw(PodVersion PodCoverageTests) ],
-    },
+  push @plugins, Dist::Zilla::PluginBundle::Classic->bundle_config({
+    name    => $section->{name} . '/@Basic',
+    payload => { },
   });
 
   my $version_format;
