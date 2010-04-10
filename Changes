@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.100990  2010-04-09 22:45:50 America/New_York
           @RJBS now builds on @Basic, not @Classic
 
 0.100910  2010-04-01 12:32:12 America/New_York
