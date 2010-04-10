@@ -84,9 +84,11 @@ sub bundle_config {
         }
       ]
     ),
-    [ MetaConfig   => { } ],
-    [ MetaJSON     => { } ],
-    [ NextRelease  => { } ],
+    [ PkgVersion     => { } ],
+    [ MetaConfig     => { } ],
+    [ MetaJSON       => { } ],
+    [ NextRelease    => { } ],
+    [ PodSyntaxTests => { } ],
     [ ($is_task ? 'TaskWeaver' : 'PodWeaver') => { config_plugin => '@RJBS' } ],
     [ Repository   => { } ],
   );
