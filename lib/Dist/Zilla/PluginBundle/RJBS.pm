@@ -10,8 +10,6 @@ with 'Dist::Zilla::Role::PluginBundle';
 
 This is the plugin bundle that RJBS uses.  It is equivalent to:
 
-  [TestRelease]
-
   [@Basic]
 
   [AutoPrereq]
@@ -48,10 +46,6 @@ sub bundle_config {
   my $prefix  = 'Dist::Zilla::Plugin::';
 
   my @plugins;
-
-  push @plugins, [
-    "$section->{name}/TestRelease" => "${prefix}TestRelease" => {}
-  ];
 
   push @plugins, Dist::Zilla::PluginBundle::Basic->bundle_config({
     name    => $section->{name} . '/@Basic',
