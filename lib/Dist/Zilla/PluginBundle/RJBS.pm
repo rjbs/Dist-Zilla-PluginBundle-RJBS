@@ -4,7 +4,7 @@ package Dist::Zilla::PluginBundle::RJBS;
 use Moose;
 use Moose::Autobox;
 use Dist::Zilla 2.100922; # TestRelease
-with 'Dist::Zilla::Role::PluginBundle';
+with 'Dist::Zilla::Role::PluginBundle::Easy';
 
 =head1 DESCRIPTION
 
@@ -37,66 +37,62 @@ omitted.
 use Dist::Zilla::PluginBundle::Basic;
 use Dist::Zilla::PluginBundle::Git;
 
-sub bundle_config {
-  my ($self, $section) = @_;
-  my $class = (ref $self) || $self;
+has manual_version => (
+  is      => 'Bool',
+  lazy    => 1,
+  default => sub { $_[0]->payload->{manual_version} },
+);
 
-  my $arg     = $section->{payload};
-  my $is_task = $arg->{task};
-  my $prefix  = 'Dist::Zilla::Plugin::';
+has major_version => (
+  is      => 'Int',
+  lazy    => 1,
+  default => sub { $_[0]->payload->{version} || 0 },
+);
 
-  my @plugins;
+has is_task => (
+  is      => 'Bool',
+  lazy    => 1,
+  default => sub { $_[0]->payload->{is_task} },
+);
 
-  push @plugins, Dist::Zilla::PluginBundle::Basic->bundle_config({
-    name    => $section->{name} . '/@Basic',
-    payload => { },
-  });
+sub configure {
+  my ($self) = @_;
 
-  my $version_format;
-  my $major_version = 0;
+  $self->add_bundle('@Basic');
 
-  if ($is_task) {
-    $version_format = q<{{ cldr('yyyyMMdd') }}.>
-                    . sprintf('%03u', ($ENV{N} || 0))
-                    . ($ENV{DEV} ? (sprintf '_%03u', $ENV{DEV}) : '') ;
-  } else {
-    $major_version  = defined $arg->{version} ? $arg->{version} : 0;
-    $version_format = q<{{ $major }}.{{ cldr('yyDDD') }}>
-                    . sprintf('%01u', ($ENV{N} || 0))
-                    . ($ENV{DEV} ? (sprintf '_%03u', $ENV{DEV}) : '') ;
+  my $v_format = $self->is_task
+    ? q<{{ cldr('yyyyMMdd') }}.> . sprintf('%03u', ($ENV{N} || 0))
+    : q<{{ $major }}.{{ cldr('yyDDD') }}> . sprintf('%01u', ($ENV{N} || 0));
+
+  # XXX: This can go away now that we have --trial, right? -- rjbs, 2010-04-13
+  $v_format .= ($ENV{DEV} ? (sprintf '_%03u', $ENV{DEV}) : '');
+
+  $self->add_plugins('AutoPrereq');
+
+  unless ($self->manual_version) {
+    $self->add_plugins([
+      AutoVersion => {
+        major     => $self->major_version,
+        format    => $v_format,
+        time_zone => 'America/New_York',
+      }
+    ]);
   }
 
-  my @extra = map {[ "$section->{name}/$_->[0]" => "$prefix$_->[0]" => $_->[1] ]}
-  (
-    [ AutoPrereq  => {} ],
-    ($arg->{manual_version} ? () :
-      [
-        AutoVersion => {
-          major     => $major_version,
-          format    => $version_format,
-          time_zone => 'America/New_York',
-        }
-      ]
-    ),
-    [ PkgVersion     => { } ],
-    [ MetaConfig     => { } ],
-    [ MetaJSON       => { } ],
-    [ NextRelease    => { } ],
-    [ PodSyntaxTests => { } ],
-    [ ($is_task ? 'TaskWeaver' : 'PodWeaver') => { config_plugin => '@RJBS' } ],
-    [ Repository   => { } ],
-  );
+  $self->add_plugins(qw(
+    PkgVersion
+    MetaConfig
+    MetaJSON
+    NextRelease
+    PodSyntaxTests
+    Repository
+  ));
 
-  push @plugins, @extra;
+  $self->is_task
+    ? $self->add_plugin('TaskWeaver')
+    : $self->add_plugin([ PodWeaver => { config_plugin => '@RJBS' } ]);
 
-  push @plugins, Dist::Zilla::PluginBundle::Git->bundle_config({
-    name    => "$section->{name}/\@Git",
-    payload => {
-      tag_format => '%v',
-    },
-  });
-
-  return @plugins;
+  $self->add_bundle('@Git' => { tag_format => '%v' });
 }
 
 __PACKAGE__->meta->make_immutable;
