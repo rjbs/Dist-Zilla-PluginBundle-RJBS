@@ -38,19 +38,22 @@ use Dist::Zilla::PluginBundle::Basic;
 use Dist::Zilla::PluginBundle::Git;
 
 has manual_version => (
-  is      => 'Bool',
+  is      => 'ro',
+  isa     => 'Bool',
   lazy    => 1,
   default => sub { $_[0]->payload->{manual_version} },
 );
 
 has major_version => (
-  is      => 'Int',
+  is      => 'ro',
+  isa     => 'Int',
   lazy    => 1,
   default => sub { $_[0]->payload->{version} || 0 },
 );
 
 has is_task => (
-  is      => 'Bool',
+  is      => 'ro',
+  isa     => 'Bool',
   lazy    => 1,
   default => sub { $_[0]->payload->{is_task} },
 );
@@ -89,8 +92,8 @@ sub configure {
   ));
 
   $self->is_task
-    ? $self->add_plugin('TaskWeaver')
-    : $self->add_plugin([ PodWeaver => { config_plugin => '@RJBS' } ]);
+    ? $self->add_plugins('TaskWeaver')
+    : $self->add_plugins([ PodWeaver => { config_plugin => '@RJBS' } ]);
 
   $self->add_bundle('@Git' => { tag_format => '%v' });
 }
