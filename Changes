@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.101040  2010-04-14 22:49:15 America/New_York
           use PluginBundle::Easy
 
 0.101020  2010-04-12 13:10:37 America/New_York
