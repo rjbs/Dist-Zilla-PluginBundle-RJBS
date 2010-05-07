@@ -27,6 +27,8 @@ sub mvp_bundle_config {
     [ '@RJBS/Synopsis',    _exp('Generic'), { header      => 'SYNOPSIS'    } ],
     [ '@RJBS/Description', _exp('Generic'), { header      => 'DESCRIPTION' } ],
     [ '@RJBS/Overview',    _exp('Generic'), { header      => 'OVERVIEW'    } ],
+
+    [ '@RJBS/Stability',   _exp('Generic'), { header      => 'STABILITY'   } ],
   );
 
   for my $plugin (
