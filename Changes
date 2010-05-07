@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          stability section
+          weaver_config option
 
 0.101040  2010-04-14 22:49:15 America/New_York
           use PluginBundle::Easy

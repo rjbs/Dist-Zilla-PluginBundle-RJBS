@@ -58,8 +58,18 @@ has is_task => (
   default => sub { $_[0]->payload->{is_task} },
 );
 
+has weaver_config => (
+  is      => 'ro',
+  isa     => 'Str',
+  lazy    => 1,
+  default => sub { $_[0]->payload->{weaver_config} || '@RJBS' },
+);
+
 sub configure {
   my ($self) = @_;
+
+  $self->log_fatal("you must not specify both weaver_config and is_task")
+    if $self->is_task and $self->weaver_config ne '@RJBS';
 
   $self->add_bundle('@Basic');
 
@@ -91,9 +101,13 @@ sub configure {
     Repository
   ));
 
-  $self->is_task
-    ? $self->add_plugins('TaskWeaver')
-    : $self->add_plugins([ PodWeaver => { config_plugin => '@RJBS' } ]);
+  if ($self->is_task) {
+    $self->add_plugins('TaskWeaver');
+  } else {
+    $self->add_plugins([
+      PodWeaver => { config_plugin => $self->weaver_config }
+    ]);
+  }
 
   $self->add_bundle('@Git' => { tag_format => '%v' });
 }
