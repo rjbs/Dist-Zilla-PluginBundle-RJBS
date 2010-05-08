@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.101270  2010-05-07 22:48:51 America/New_York
           stability section
           weaver_config option
 
