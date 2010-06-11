@@ -55,7 +55,7 @@ has is_task => (
   is      => 'ro',
   isa     => 'Bool',
   lazy    => 1,
-  default => sub { $_[0]->payload->{is_task} },
+  default => sub { $_[0]->payload->{task} },
 );
 
 has weaver_config => (
