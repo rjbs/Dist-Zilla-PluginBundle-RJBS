@@ -13,7 +13,7 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
   [@Basic]
 
   [AutoPrereq]
-  [AutoVersion]
+  [BumpVersionFromGit]
   [PkgVersion]
   [MetaConfig]
   [MetaJSON]
@@ -29,8 +29,8 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
   tag_format = %v
 
 If the C<task> argument is given to the bundle, PodWeaver is replaced with
-TaskWeaver.  If the C<manual_version> argument is given, AutoVersion is
-omitted.
+TaskWeaver and BumpVersionFromGit is replaced with AutoVersion.  If the
+C<manual_version> argument is given, AutoVersion is omitted. 
 
 =cut
 
@@ -73,23 +73,28 @@ sub configure {
 
   $self->add_bundle('@Basic');
 
-  my $v_format = $self->is_task
-    ? q<{{ cldr('yyyyMMdd') }}.> . sprintf('%03u', ($ENV{N} || 0))
-    : q<{{ $major }}.{{ cldr('yyDDD') }}> . sprintf('%01u', ($ENV{N} || 0));
-
-  # XXX: This can go away now that we have --trial, right? -- rjbs, 2010-04-13
-  $v_format .= ($ENV{DEV} ? (sprintf '_%03u', $ENV{DEV}) : '');
-
   $self->add_plugins('AutoPrereq');
 
+
   unless ($self->manual_version) {
-    $self->add_plugins([
-      AutoVersion => {
-        major     => $self->major_version,
-        format    => $v_format,
-        time_zone => 'America/New_York',
-      }
-    ]);
+    if ($self->is_task) {
+      my $v_format = q<{{cldr('yyyyMMdd')}}>
+                   . sprintf('.%03u', ($ENV{N} || 0));
+
+      $self->add_plugins([
+        AutoVersion => {
+          major     => $self->major_version,
+          format    => $v_format,
+          time_zone => 'America/New_York',
+        }
+      ]);
+    } else {
+      $self->add_plugins([
+        BumpVersionFromGit => {
+          version_regexp => '^([0-9]+\.[0-9]+)$',
+        }
+      ]);
+    }
   }
 
   $self->add_plugins(qw(
