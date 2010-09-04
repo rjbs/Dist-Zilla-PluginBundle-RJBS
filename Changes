@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+1.000     2010-09-04 15:48:21 America/New_York
+          switch most dists to BumpVersionFromGit
+
 0.101620  2010-06-11 16:08:42 America/New_York
           correct "task" argument; had stopped working
 
