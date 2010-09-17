@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.001     2010-09-17 19:16:59 America/New_York
           use AutoPrereqs, not AutoPrereq
 
 1.000     2010-09-04 15:48:21 America/New_York
