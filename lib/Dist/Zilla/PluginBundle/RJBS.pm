@@ -12,7 +12,7 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
 
   [@Basic]
 
-  [AutoPrereq]
+  [AutoPrereqs]
   [BumpVersionFromGit]
   [PkgVersion]
   [MetaConfig]
@@ -73,7 +73,7 @@ sub configure {
 
   $self->add_bundle('@Basic');
 
-  $self->add_plugins('AutoPrereq');
+  $self->add_plugins('AutoPrereqs');
 
 
   unless ($self->manual_version) {
