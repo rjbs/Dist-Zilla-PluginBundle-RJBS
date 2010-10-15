@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+1.002     2010-10-14 22:44:46 America/New_York
+          use Git::NextVersion, not BumpVersionFromGit
+
 1.001     2010-09-17 19:16:59 America/New_York
           use AutoPrereqs, not AutoPrereq
 
