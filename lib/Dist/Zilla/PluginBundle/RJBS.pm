@@ -13,7 +13,7 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
   [@Basic]
 
   [AutoPrereqs]
-  [BumpVersionFromGit]
+  [Git::NextVersion]
   [PkgVersion]
   [MetaConfig]
   [MetaJSON]
@@ -29,7 +29,7 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
   tag_format = %v
 
 If the C<task> argument is given to the bundle, PodWeaver is replaced with
-TaskWeaver and BumpVersionFromGit is replaced with AutoVersion.  If the
+TaskWeaver and Git::NextVersion is replaced with AutoVersion.  If the
 C<manual_version> argument is given, AutoVersion is omitted. 
 
 =cut
@@ -90,7 +90,7 @@ sub configure {
       ]);
     } else {
       $self->add_plugins([
-        BumpVersionFromGit => {
+        'Git::NextVersion' => {
           version_regexp => '^([0-9]+\.[0-9]+)$',
         }
       ]);
