@@ -114,7 +114,10 @@ sub configure {
     ]);
   }
 
-  $self->add_bundle('@Git' => { tag_format => '%v' });
+  $self->add_bundle('@Git' => {
+    tag_format => '%v',
+    push_to    => [ qw(origin github) ],
+  });
 }
 
 __PACKAGE__->meta->make_immutable;
