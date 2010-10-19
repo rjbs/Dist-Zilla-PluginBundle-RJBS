@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.003     2010-10-18 21:44:49 America/New_York
           push to both origin *and* github when releasing
 
 1.002     2010-10-14 22:44:46 America/New_York
