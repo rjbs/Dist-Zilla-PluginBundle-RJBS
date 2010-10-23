@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.004     2010-10-23 17:59:42 America/New_York
           always require Test::More; it's just easier than thinking
 
 1.003     2010-10-18 21:44:49 America/New_York
