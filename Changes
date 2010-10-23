@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          always require Test::More; it's just easier than thinking
 
 1.003     2010-10-18 21:44:49 America/New_York
           push to both origin *and* github when releasing

@@ -106,6 +106,14 @@ sub configure {
     Repository
   ));
 
+  $self->add_plugins(
+    [ Prereqs => 'TestMoreWithSubtests' => {
+      -phase => 'test',
+      -type  => 'requires',
+      'Test::More' => '0.96'
+    } ],
+  );
+
   if ($self->is_task) {
     $self->add_plugins('TaskWeaver');
   } else {
