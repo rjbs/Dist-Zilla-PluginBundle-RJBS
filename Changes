@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.005     2011-02-04 18:07:28 America/New_York
           add CheckPrereqsIndexed
 
 1.004     2010-10-23 17:59:42 America/New_York
