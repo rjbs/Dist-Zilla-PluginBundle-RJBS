@@ -71,6 +71,7 @@ sub configure {
   $self->log_fatal("you must not specify both weaver_config and is_task")
     if $self->is_task and $self->weaver_config ne '@RJBS';
 
+  $self->add_plugins('CheckPrereqsIndexed');
   $self->add_bundle('@Basic');
 
   $self->add_plugins('AutoPrereqs');

@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          add CheckPrereqsIndexed
 
 1.004     2010-10-23 17:59:42 America/New_York
           always require Test::More; it's just easier than thinking
