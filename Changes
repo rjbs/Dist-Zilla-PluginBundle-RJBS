@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          BumpVersionFromGit is not a prereq
 
 1.005     2011-02-04 18:07:28 America/New_York
           add CheckPrereqsIndexed
