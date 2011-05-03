@@ -23,7 +23,10 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
   [PodWeaver]
   config_plugin = @RJBS
 
-  [Repository]
+  [GithubMeta]
+  user = rjbs
+  remote = github
+  remote = origin
 
   [@Git]
   tag_format = %v
@@ -76,7 +79,6 @@ sub configure {
 
   $self->add_plugins('AutoPrereqs');
 
-
   unless ($self->manual_version) {
     if ($self->is_task) {
       my $v_format = q<{{cldr('yyyyMMdd')}}>
@@ -122,6 +124,13 @@ sub configure {
       PodWeaver => { config_plugin => $self->weaver_config }
     ]);
   }
+
+  $self->add_plugins(
+    [ GithubMeta => {
+      user   => 'rjbs',
+      remote => [ qw(github origin) ],
+    } ],
+  );
 
   $self->add_bundle('@Git' => {
     tag_format => '%v',

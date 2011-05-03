@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          replace Repository with GithubMeta
 
 1.006     2011-02-06 15:30:10 America/New_York
           BumpVersionFromGit is not a prereq
