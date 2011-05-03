@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.007     2011-05-03 16:46:12 America/New_York
           replace Repository with GithubMeta
 
 1.006     2011-02-06 15:30:10 America/New_York
