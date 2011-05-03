@@ -33,7 +33,10 @@ This is the plugin bundle that RJBS uses.  It is equivalent to:
 
 If the C<task> argument is given to the bundle, PodWeaver is replaced with
 TaskWeaver and Git::NextVersion is replaced with AutoVersion.  If the
-C<manual_version> argument is given, AutoVersion is omitted. 
+C<manual_version> argument is given, AutoVersion is omitted.
+
+If the C<github_issues> argument is given, and true, the F<META.*> files will
+point to GitHub issues for the dist's bugtracker.
 
 =cut
 
@@ -59,6 +62,13 @@ has is_task => (
   isa     => 'Bool',
   lazy    => 1,
   default => sub { $_[0]->payload->{task} },
+);
+
+has github_issues => (
+  is      => 'ro',
+  isa     => 'Bool',
+  lazy    => 1,
+  default => sub { $_[0]->payload->{github_issues} },
 );
 
 has weaver_config => (
@@ -129,6 +139,7 @@ sub configure {
     [ GithubMeta => {
       user   => 'rjbs',
       remote => [ qw(github origin) ],
+      issues => $self->github_issues,
     } ],
   );
 
