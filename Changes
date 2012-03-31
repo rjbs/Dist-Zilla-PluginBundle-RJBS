@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          actually *remove* Repository
 
 1.007     2011-05-03 16:46:12 America/New_York
           replace Repository with GithubMeta

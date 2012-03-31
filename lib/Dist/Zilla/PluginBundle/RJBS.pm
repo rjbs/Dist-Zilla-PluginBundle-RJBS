@@ -8,7 +8,7 @@ with 'Dist::Zilla::Role::PluginBundle::Easy';
 
 =head1 DESCRIPTION
 
-This is the plugin bundle that RJBS uses.  It is equivalent to:
+This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
 
   [@Basic]
 
@@ -116,7 +116,6 @@ sub configure {
     MetaJSON
     NextRelease
     PodSyntaxTests
-    Repository
   ));
 
   $self->add_plugins(
