@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.008     2012-03-31 18:15:50 Europe/Paris
           actually *remove* Repository
 
 1.007     2011-05-03 16:46:12 America/New_York
