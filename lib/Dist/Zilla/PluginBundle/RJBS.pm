@@ -10,7 +10,9 @@ with 'Dist::Zilla::Role::PluginBundle::Easy';
 
 This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
 
+  [Git::GatherDir]
   [@Basic]
+  ; ...but without GatherDir
 
   [AutoPrereqs]
   [Git::NextVersion]
@@ -41,6 +43,7 @@ point to GitHub issues for the dist's bugtracker.
 =cut
 
 use Dist::Zilla::PluginBundle::Basic;
+use Dist::Zilla::PluginBundle::Filter;
 use Dist::Zilla::PluginBundle::Git;
 
 has manual_version => (
@@ -84,8 +87,12 @@ sub configure {
   $self->log_fatal("you must not specify both weaver_config and is_task")
     if $self->is_task and $self->weaver_config ne '@RJBS';
 
+  $self->add_plugins('Git::GatherDir');
   $self->add_plugins('CheckPrereqsIndexed');
-  $self->add_bundle('@Basic');
+  $self->add_bundle('@Filter', {
+    '-bundle' => '@Basic',
+    '-remove' => [ 'GatherDir' ],
+  });
 
   $self->add_plugins('AutoPrereqs');
 
