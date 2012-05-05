@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.010     2012-05-04 21:35:32 America/New_York
           replace ExtraTests with CheckExtraTests
 
 1.009     2012-04-12 18:53:14 America/New_York
