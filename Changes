@@ -1,8 +1,10 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          replace ExtraTests with CheckExtraTests
 
 1.009     2012-04-12 18:53:14 America/New_York
+          replace GatherDir with Git::GatherDir
 
 1.008     2012-03-31 18:15:50 Europe/Paris
           actually *remove* Repository

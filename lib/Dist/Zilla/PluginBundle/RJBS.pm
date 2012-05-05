@@ -89,9 +89,10 @@ sub configure {
 
   $self->add_plugins('Git::GatherDir');
   $self->add_plugins('CheckPrereqsIndexed');
+  $self->add_plugins('CheckExtraTests');
   $self->add_bundle('@Filter', {
     '-bundle' => '@Basic',
-    '-remove' => [ 'GatherDir' ],
+    '-remove' => [ 'GatherDir', 'ExtraTests' ],
   });
 
   $self->add_plugins('AutoPrereqs');
