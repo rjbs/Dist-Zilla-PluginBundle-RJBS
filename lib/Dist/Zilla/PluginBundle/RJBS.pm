@@ -12,7 +12,7 @@ This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
 
   [Git::GatherDir]
   [@Basic]
-  ; ...but without GatherDir
+  ; ...but without GatherDir and ExtraTests
 
   [AutoPrereqs]
   [Git::NextVersion]
@@ -20,7 +20,11 @@ This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
   [MetaConfig]
   [MetaJSON]
   [NextRelease]
+
+  [Test::ChangesHasContent]
   [PodSyntaxTests]
+  [Test::Compile]
+  [ReportVersions::Tiny]
 
   [PodWeaver]
   config_plugin = @RJBS
@@ -123,7 +127,10 @@ sub configure {
     MetaConfig
     MetaJSON
     NextRelease
+    Test::ChangesHasContent
     PodSyntaxTests
+    Test::Compile
+    ReportVersions::Tiny
   ));
 
   $self->add_plugins(

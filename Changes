@@ -1,6 +1,11 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          add Test::ChangesHasContent
+          add CheckExtraTests
+          add CheckPrereqsIndexed
+          add ReportVersions::Tiny
+          add Test::Compile
 
 1.011     2012-05-11 10:35:26 America/New_York
           add CheckExtraTests to prereqs
