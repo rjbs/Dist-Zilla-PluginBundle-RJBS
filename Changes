@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.012     2012-07-01 18:10:21 America/New_York
           add Test::ChangesHasContent
           add CheckExtraTests
           add CheckPrereqsIndexed
