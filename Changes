@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+1.013     2012-12-24 23:18:05 America/New_York
+          when pushing, push all matching remotes
+
 1.012     2012-07-01 18:10:21 America/New_York
           add Test::ChangesHasContent
           add CheckExtraTests
