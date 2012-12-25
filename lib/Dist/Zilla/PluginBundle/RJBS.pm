@@ -159,7 +159,10 @@ sub configure {
 
   $self->add_bundle('@Git' => {
     tag_format => '%v',
-    push_to    => [ qw(origin github) ],
+    push_to    => [
+      'origin :',
+      'github :',
+    ],
   });
 }
 
