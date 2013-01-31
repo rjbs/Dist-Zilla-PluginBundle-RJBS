@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          set remotes_must_exist=0 for @Git, to work around a bug that
+          breaks pushing to named branches
 
 1.013     2012-12-24 23:18:05 America/New_York
           when pushing, push all matching remotes

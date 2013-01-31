@@ -159,6 +159,7 @@ sub configure {
 
   $self->add_bundle('@Git' => {
     tag_format => '%v',
+    remotes_must_exist => 0,
     push_to    => [
       'origin :',
       'github :',
