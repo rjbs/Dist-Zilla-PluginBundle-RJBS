@@ -75,7 +75,7 @@ has github_issues => (
   is      => 'ro',
   isa     => 'Bool',
   lazy    => 1,
-  default => sub { $_[0]->payload->{github_issues} },
+  default => sub { $_[0]->payload->{github_issues} // 1 },
 );
 
 has weaver_config => (

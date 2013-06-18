@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          default to github issues
 
 1.014     2013-01-30 21:52:52 America/New_York
           set remotes_must_exist=0 for @Git, to work around a bug that
