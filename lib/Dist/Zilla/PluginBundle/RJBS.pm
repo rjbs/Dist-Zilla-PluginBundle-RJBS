@@ -85,6 +85,15 @@ has weaver_config => (
   default => sub { $_[0]->payload->{weaver_config} || '@RJBS' },
 );
 
+sub mvp_multivalue_args { qw(dont_compile) }
+
+has dont_compile => (
+  is      => 'ro',
+  isa     => 'ArrayRef[Str]',
+  lazy    => 1,
+  default => sub { $_[0]->payload->{dont_compile} || [] },
+);
+
 sub configure {
   my ($self) = @_;
 
@@ -129,9 +138,14 @@ sub configure {
     NextRelease
     Test::ChangesHasContent
     PodSyntaxTests
-    Test::Compile
     ReportVersions::Tiny
   ));
+
+  $self->add_plugins(
+    [ 'Test::Compile' => {
+      skip => $self->dont_compile,
+    } ],
+  );
 
   $self->add_plugins(
     [ Prereqs => 'TestMoreWithSubtests' => {
