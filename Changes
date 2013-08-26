@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.016     2013-08-25 21:47:21 America/New_York
           PkgVersion die_on_existing_version is now true by default
 
 1.015     2013-06-18 13:27:39 America/New_York
