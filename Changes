@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          PkgVersion die_on_existing_version is now true by default
 
 1.015     2013-06-18 13:27:39 America/New_York
           default to github issues

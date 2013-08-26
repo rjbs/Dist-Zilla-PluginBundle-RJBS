@@ -17,6 +17,7 @@ This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
   [AutoPrereqs]
   [Git::NextVersion]
   [PkgVersion]
+  die_on_existing_version = 1
   [MetaConfig]
   [MetaJSON]
   [NextRelease]
@@ -131,15 +132,17 @@ sub configure {
     }
   }
 
-  $self->add_plugins(qw(
-    PkgVersion
-    MetaConfig
-    MetaJSON
-    NextRelease
-    Test::ChangesHasContent
-    PodSyntaxTests
-    ReportVersions::Tiny
-  ));
+  $self->add_plugins(
+    [ PkgVersion => { die_on_existing_version => 1 } ],
+    qw(
+      MetaConfig
+      MetaJSON
+      NextRelease
+      Test::ChangesHasContent
+      PodSyntaxTests
+      ReportVersions::Tiny
+    ),
+  );
 
   $self->add_plugins(
     [ 'Test::Compile' => {
