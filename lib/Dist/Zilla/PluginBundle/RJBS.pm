@@ -158,6 +158,7 @@ sub configure {
   $self->add_plugins(
     [ 'Test::Compile' => {
       skip => $self->dont_compile,
+      bail_out_on_fail => 1,
     } ],
   );
 
