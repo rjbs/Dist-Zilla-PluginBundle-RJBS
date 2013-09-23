@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          turn on PromptIfStale
 
 1.016     2013-08-25 21:47:21 America/New_York
           PkgVersion die_on_existing_version is now true by default

@@ -104,6 +104,17 @@ sub configure {
   $self->add_plugins('Git::GatherDir');
   $self->add_plugins('CheckPrereqsIndexed');
   $self->add_plugins('CheckExtraTests');
+  $self->add_plugins(
+    [ PromptIfStale => 'RJBS-Outdated' => {
+      phase  => 'build',
+      module => 'Dist::Zilla::PluginBundle::RJBS',
+    } ],
+    [ PromptIfStale => 'CPAN-Outdated' => {
+      phase => 'release',
+      check_all_plugins => 1,
+      # check_all_prereqs => 1, # <-- not sure yet -- rjbs, 2013-09-23
+    } ],
+  );
   $self->add_bundle('@Filter', {
     '-bundle' => '@Basic',
     '-remove' => [ 'GatherDir', 'ExtraTests' ],
