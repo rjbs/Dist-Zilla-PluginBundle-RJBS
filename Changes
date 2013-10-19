@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.018     2013-10-19 09:46:28 America/New_York
         - add PromptIfStale to prereqs
         - remove Test::Compile
 
