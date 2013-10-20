@@ -5,7 +5,7 @@ package Pod::Weaver::PluginBundle::RJBS;
 
 =head1 OVERVIEW
 
-Roughly equivalent to:
+I<Roughly> equivalent to:
 
 =for :list
 * C<@Default>

@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - require and cope with Dist::Zilla v5 and Pod::Weaver v4
 
 1.018     2013-10-19 09:46:28 America/New_York
         - add PromptIfStale to prereqs
