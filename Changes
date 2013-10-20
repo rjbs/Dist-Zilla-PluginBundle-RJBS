@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+5.000     2013-10-20 08:27:49 America/New_York
         - require and cope with Dist::Zilla v5 and Pod::Weaver v4
 
 1.018     2013-10-19 09:46:28 America/New_York
