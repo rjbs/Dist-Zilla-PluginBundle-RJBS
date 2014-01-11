@@ -168,7 +168,7 @@ sub configure {
     $self->add_plugins([
       PodWeaver => {
         config_plugin => $self->weaver_config,
-        replacer      => 'replace_with_blank',
+        replacer      => 'replace_with_comment',
       }
     ]);
   }
