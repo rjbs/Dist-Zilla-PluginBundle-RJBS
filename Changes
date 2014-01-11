@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+5.002     2014-01-11 14:43:39-05:00 America/New_York
+        - start replacing woven Pod with comments, instead of just deleting
+
 5.001     2013-11-24 07:39:19 America/New_York
         - fix repo links
 
