@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+5.003     2014-01-11 23:03:20-05:00 America/New_York
         - make it fatal for PkgVersion to try inserting new lines
 
 5.002     2014-01-11 14:43:39-05:00 America/New_York
