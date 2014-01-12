@@ -18,6 +18,7 @@ This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
   [Git::NextVersion]
   [PkgVersion]
   die_on_existing_version = 1
+  die_on_line_insertion   = 1
   [MetaConfig]
   [MetaJSON]
   [NextRelease]
@@ -143,7 +144,12 @@ sub configure {
   }
 
   $self->add_plugins(
-    [ PkgVersion => { die_on_existing_version => 1 } ],
+    [
+      PkgVersion => {
+        die_on_existing_version => 1,
+        die_on_line_insertion   => 1,
+      },
+    ],
     qw(
       MetaConfig
       MetaJSON
