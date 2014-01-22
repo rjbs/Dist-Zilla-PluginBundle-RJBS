@@ -31,7 +31,6 @@ This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
   config_plugin = @RJBS
 
   [GithubMeta]
-  user = rjbs
   remote = github
   remote = origin
 
@@ -181,7 +180,6 @@ sub configure {
 
   $self->add_plugins(
     [ GithubMeta => {
-      user   => 'rjbs',
       remote => [ qw(github origin) ],
       issues => $self->github_issues,
     } ],
