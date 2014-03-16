@@ -28,7 +28,7 @@ This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
 
   [Test::ChangesHasContent]
   [PodSyntaxTests]
-  [ReportVersions::Tiny]
+  [Test::ReportPrereqs]
 
   [PodWeaver]
   config_plugin = @RJBS
@@ -160,7 +160,7 @@ sub configure {
       NextRelease
       Test::ChangesHasContent
       PodSyntaxTests
-      ReportVersions::Tiny
+      Test::ReportPrereqs
     ),
   );
 
