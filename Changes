@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - default_jobs for makemaker is now 9
 
 5.003     2014-01-11 23:03:20-05:00 America/New_York
         - make it fatal for PkgVersion to try inserting new lines
