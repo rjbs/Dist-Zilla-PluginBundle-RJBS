@@ -12,7 +12,10 @@ This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
 
   [Git::GatherDir]
   [@Basic]
-  ; ...but without GatherDir and ExtraTests
+  ; ...but without GatherDir and ExtraTests and MakeMaker
+
+  [MakeMaker]
+  default_jobs = 9
 
   [AutoPrereqs]
   [Git::NextVersion]
@@ -116,8 +119,10 @@ sub configure {
   );
   $self->add_bundle('@Filter', {
     '-bundle' => '@Basic',
-    '-remove' => [ 'GatherDir', 'ExtraTests' ],
+    '-remove' => [ 'GatherDir', 'ExtraTests', 'MakeMaker' ],
   });
+
+  $self->add_plugins([ MakeMaker => { default_jobs => 9 } ]);
 
   $self->add_plugins('AutoPrereqs');
 
