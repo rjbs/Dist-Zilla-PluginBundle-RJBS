@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - allow homepage to be overridden
 
 5.004     2014-03-16 16:52:01+01:00 Europe/Paris
         - default_jobs for makemaker is now 9

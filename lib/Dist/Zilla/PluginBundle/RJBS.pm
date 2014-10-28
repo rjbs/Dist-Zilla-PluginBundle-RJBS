@@ -81,6 +81,12 @@ has github_issues => (
   default => sub { $_[0]->payload->{github_issues} // 1 },
 );
 
+has homepage => (
+  is      => 'ro',
+  isa     => 'Str',
+  predicate => 'has_homepage',
+);
+
 has weaver_config => (
   is      => 'ro',
   isa     => 'Str',
@@ -187,6 +193,7 @@ sub configure {
     [ GithubMeta => {
       remote => [ qw(github origin) ],
       issues => $self->github_issues,
+      ($self->has_homepage ? (homepage => $self->homepage) : ()),
     } ],
   );
 
