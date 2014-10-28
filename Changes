@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+5.005     2014-10-27 22:11:18-04:00 America/New_York
         - allow homepage to be overridden
 
 5.004     2014-03-16 16:52:01+01:00 Europe/Paris
