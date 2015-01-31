@@ -2,7 +2,6 @@ package Dist::Zilla::PluginBundle::RJBS;
 # ABSTRACT: BeLike::RJBS when you build your dists
 
 use Moose;
-use Moose::Autobox;
 use Dist::Zilla 2.100922; # TestRelease
 with 'Dist::Zilla::Role::PluginBundle::Easy';
 
