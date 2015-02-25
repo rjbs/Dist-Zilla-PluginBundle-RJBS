@@ -45,6 +45,7 @@ sub mvp_bundle_config {
     [ '@RJBS/Leftovers', _exp('Leftovers'), {} ],
     [ '@RJBS/postlude',  _exp('Region'),    { region_name => 'postlude' } ],
     [ '@RJBS/Authors',   _exp('Authors'),   {} ],
+    [ '@RJBS/Contributors', _exp('Contributors'), {} ],
     [ '@RJBS/Legal',     _exp('Legal'),     {} ],
     [ '@RJBS/List',      _exp('-Transformer'), { 'transformer' => 'List' } ],
   );

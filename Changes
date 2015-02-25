@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - add Contributors section to Pod::Weaver!  bam!
 
 5.006     2015-02-03 23:01:27-05:00 America/New_York
         - drop requirement of Moose::Autobox

@@ -39,6 +39,8 @@ This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
   [@Git]
   tag_format = %v
 
+  [Git::Contributors]
+
 If the C<task> argument is given to the bundle, PodWeaver is replaced with
 TaskWeaver and Git::NextVersion is replaced with AutoVersion.  If the
 C<manual_version> argument is given, AutoVersion is omitted.
@@ -204,6 +206,8 @@ sub configure {
       'github :',
     ],
   });
+
+  $self->add_plugins('Git::Contributors');
 }
 
 __PACKAGE__->meta->make_immutable;
