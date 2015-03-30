@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+5.008     2015-03-29 22:04:49-04:00 America/New_York
+        - add missing prereq
+
 5.007     2015-02-24 21:19:34-05:00 America/New_York
         - add Contributors section to Pod::Weaver!  bam!
 
