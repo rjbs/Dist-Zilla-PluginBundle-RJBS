@@ -85,7 +85,8 @@ has github_issues => (
 has homepage => (
   is      => 'ro',
   isa     => 'Str',
-  predicate => 'has_homepage',
+  lazy    => 1,
+  default => sub { $_[0]->payload->{homepage} // '' },
 );
 
 has weaver_config => (
@@ -107,7 +108,8 @@ has dont_compile => (
 has package_name_version => (
   is      => 'ro',
   isa     => 'Bool',
-  default => 0,
+  lazy    => 1,
+  default => sub { $_[0]->payload->{package_name_version} // 0 },
 );
 
 sub configure {
@@ -201,7 +203,7 @@ sub configure {
     [ GithubMeta => {
       remote => [ qw(github origin) ],
       issues => $self->github_issues,
-      ($self->has_homepage ? (homepage => $self->homepage) : ()),
+      (length $self->homepage ? (homepage => $self->homepage) : ()),
     } ],
   );
 
