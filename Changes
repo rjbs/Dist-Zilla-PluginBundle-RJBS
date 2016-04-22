@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - fix homepage argument
+        - add package_name_version argument, for DZv6
 
 5.009     2015-04-16 15:42:45+02:00 Europe/Berlin
         - add missing Contributors section plugin
