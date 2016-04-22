@@ -104,6 +104,12 @@ has dont_compile => (
   default => sub { $_[0]->payload->{dont_compile} || [] },
 );
 
+has package_name_version => (
+  is      => 'ro',
+  isa     => 'Bool',
+  default => 0,
+);
+
 sub configure {
   my ($self) = @_;
 
@@ -159,6 +165,7 @@ sub configure {
       PkgVersion => {
         die_on_existing_version => 1,
         die_on_line_insertion   => 1,
+        ($self->package_name_version ? (use_package => 1) : ()),
       },
     ],
     qw(
