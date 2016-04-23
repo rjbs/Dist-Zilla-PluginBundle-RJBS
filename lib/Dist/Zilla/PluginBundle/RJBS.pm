@@ -157,6 +157,7 @@ sub configure {
       $self->add_plugins([
         'Git::NextVersion' => {
           version_regexp => '^([0-9]+\.[0-9]+)$',
+          version_by_branch => 1,
         }
       ]);
     }

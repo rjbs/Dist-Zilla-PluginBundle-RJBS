@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - add version_by_branch to Git::NextVersion
 
 5.010     2016-04-23 15:22:59+01:00 Europe/London
         - fix homepage argument
