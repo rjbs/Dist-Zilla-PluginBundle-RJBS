@@ -3,7 +3,10 @@ package Dist::Zilla::PluginBundle::RJBS;
 
 use Moose;
 use Dist::Zilla 2.100922; # TestRelease
-with 'Dist::Zilla::Role::PluginBundle::Easy';
+with
+    'Dist::Zilla::Role::PluginBundle::Easy',
+    'Dist::Zilla::Role::PluginBundle::PluginRemover' => { -version => '0.103' },
+    'Dist::Zilla::Role::PluginBundle::Config::Slicer';
 
 =head1 DESCRIPTION
 
@@ -47,6 +50,9 @@ C<manual_version> argument is given, AutoVersion is omitted.
 
 If the C<github_issues> argument is given, and true, the F<META.*> files will
 point to GitHub issues for the dist's bugtracker.
+
+This bundle makes use of L<Dist::Zilla::Role::PluginBundle::PluginRemover> and
+L<Dist::Zilla::Role::PluginBundle::Config::Slicer> to allow further customization.
 
 =cut
 
