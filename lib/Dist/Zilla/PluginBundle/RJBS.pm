@@ -26,6 +26,7 @@ This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
   die_on_line_insertion   = 1
   [MetaConfig]
   [MetaJSON]
+  [MinimumPerlFast]
   [NextRelease]
 
   [Test::ChangesHasContent]
@@ -180,6 +181,7 @@ sub configure {
     qw(
       MetaConfig
       MetaJSON
+      MinimumPerlFast
       NextRelease
       Test::ChangesHasContent
       PodSyntaxTests
