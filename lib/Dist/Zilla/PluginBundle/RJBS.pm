@@ -208,7 +208,7 @@ sub configure {
 
   $self->add_plugins(
     [ GithubMeta => {
-      remote => [ qw(github rjbs) ],
+      remote => [ qw(github) ],
       issues => $self->github_issues,
       (length $self->homepage ? (homepage => $self->homepage) : ()),
     } ],
@@ -218,7 +218,6 @@ sub configure {
     tag_format => '%v',
     remotes_must_exist => 0,
     push_to    => [
-      'rjbs :',
       'github :',
     ],
   });
