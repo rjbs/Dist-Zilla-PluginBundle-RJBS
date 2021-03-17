@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - require at least ExtUtils::MakeMaker 6.78 to avoid -w being used on
+          perls when running "make test"
 
 5.012     2020-11-02 19:32:35-05:00 America/New_York
         - stop trying to push to a dead remote

@@ -18,6 +18,7 @@ This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
 
   [MakeMaker]
   default_jobs = 9
+  eumm_version = 6.78
 
   [AutoPrereqs]
   [Git::NextVersion]
@@ -143,7 +144,12 @@ sub configure {
     '-remove' => [ 'GatherDir', 'ExtraTests', 'MakeMaker' ],
   });
 
-  $self->add_plugins([ MakeMaker => { default_jobs => 9 } ]);
+  $self->add_plugins([
+    MakeMaker => {
+      default_jobs  => 9,
+      eumm_version  =>  6.78, # Stop using -w when running tests.
+    }
+  ]);
 
   $self->add_plugins('AutoPrereqs');
 
