@@ -109,7 +109,7 @@ sub _stability_plugin {
     _exp('GenerateSection'),
     {
       title  => 'STABILITY',
-      text   => $STABILITY{$name},
+      text   => [ split /\n/, $STABILITY{$name} ],
     }
   ];
 }
