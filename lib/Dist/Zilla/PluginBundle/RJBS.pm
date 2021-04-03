@@ -119,6 +119,11 @@ has package_name_version => (
   default => sub { $_[0]->payload->{package_name_version} // 0 },
 );
 
+has stability => (
+  is      => 'ro',
+  default => sub { $_[0]->payload->{stability} },
+);
+
 sub configure {
   my ($self) = @_;
 
@@ -204,6 +209,7 @@ sub configure {
   if ($self->is_task) {
     $self->add_plugins('TaskWeaver');
   } else {
+    our $stability = $self->stability;
     $self->add_plugins([
       PodWeaver => {
         config_plugin => $self->weaver_config,
