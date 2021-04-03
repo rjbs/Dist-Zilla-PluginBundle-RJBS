@@ -8,6 +8,8 @@ with
     'Dist::Zilla::Role::PluginBundle::PluginRemover' => { -version => '0.103' },
     'Dist::Zilla::Role::PluginBundle::Config::Slicer';
 
+use v5.20.0;
+
 =head1 DESCRIPTION
 
 This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
