@@ -99,6 +99,17 @@ is v5.40, then this module should work on both v5.40 and v5.38.)
 $STOCK
 END
 
+# To be used almost exclusively on stuff that I write for my own use and ship
+# to CPAN as a matter of convenience, rather than for libraries I expect to
+# become part of anyone's software stack. -- rjbs, 2021-04-03
+$SUPPORT{'no-mercy'} = <<"END";
+This module is shipped with no promise about what version of perl it will
+require in the future.  In practice, this tends to mean "you need a perl from
+the last three years," but you can't rely on that.  If a new version of perl
+ship, this software B<may> begin to require it for any reason, and there is no
+promise that patches will be accepted to lower the minimum required perl.
+END
+
 sub _perl_support_plugin {
   my ($self, $name) = @_;
 
