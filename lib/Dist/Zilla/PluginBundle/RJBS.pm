@@ -119,9 +119,9 @@ has package_name_version => (
   default => sub { $_[0]->payload->{package_name_version} // 0 },
 );
 
-has stability => (
+has perl_support => (
   is      => 'ro',
-  default => sub { $_[0]->payload->{stability} },
+  default => sub { $_[0]->payload->{perl_support} },
 );
 
 sub configure {
@@ -209,7 +209,7 @@ sub configure {
   if ($self->is_task) {
     $self->add_plugins('TaskWeaver');
   } else {
-    our $stability = $self->stability;
+    our $perl_support = $self->perl_support;
     $self->add_plugins([
       PodWeaver => {
         config_plugin => $self->weaver_config,

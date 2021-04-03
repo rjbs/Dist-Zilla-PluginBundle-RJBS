@@ -34,8 +34,8 @@ sub mvp_bundle_config {
     [ '@RJBS/Stability',   _exp('Generic'), { header      => 'STABILITY'   } ],
   );
 
-  if (my $stability = $Dist::Zilla::PluginBundle::RJBS::stability) {
-    push @plugins, $self->_stability_plugin($stability);
+  if (my $perl_support = $Dist::Zilla::PluginBundle::RJBS::perl_support) {
+    push @plugins, $self->_perl_support_plugin($perl_support);
   }
 
   for my $plugin (
@@ -59,9 +59,9 @@ sub mvp_bundle_config {
   return @plugins;
 }
 
-my %STABILITY;
+my %SUPPORT;
 
-$STABILITY{toolchain} = <<'END';
+$SUPPORT{toolchain} = <<'END';
 This module is part of CPAN toolchain, or is treated as such.  As such, it
 follows the agreement of the Perl Toolchain Gang to require no newer version of
 perl than v5.8.1.  This version may change by agreement of the Toolchain Gang,
@@ -77,21 +77,21 @@ for any reason, and there is no promise that patches will be accepted to lower
 the minimum required perl.
 END
 
-$STABILITY{extreme} = <<"END";
+$SUPPORT{extreme} = <<"END";
 This module has an extremely long-term perl support period.  That means it will
 not require a version of perl released fewer than ten years ago.
 
 $STOCK
 END
 
-$STABILITY{longterm} = <<"END";
+$SUPPORT{longterm} = <<"END";
 This module has a long-term perl support period.  That means it will not
 require a version of perl released fewer than five years ago.
 
 $STOCK
 END
 
-$STABILITY{standard} = <<"END";
+$SUPPORT{standard} = <<"END";
 This module has the same support period as perl itself:  it supports the two
 most recent versions of perl.  (That is, if the most recently released version
 is v5.40, then this module should work on both v5.40 and v5.38.)
@@ -99,17 +99,17 @@ is v5.40, then this module should work on both v5.40 and v5.38.)
 $STOCK
 END
 
-sub _stability_plugin {
+sub _perl_support_plugin {
   my ($self, $name) = @_;
 
-  Carp::confess("unknown stability level $name") unless exists $STABILITY{$name};
+  Carp::confess("unknown perl support level $name") unless exists $SUPPORT{$name};
 
   return [
-    '@RJBS/StockStability',
+    '@RJBS/PerlSupport',
     _exp('GenerateSection'),
     {
-      title  => 'STABILITY',
-      text   => [ split /\n/, $STABILITY{$name} ],
+      title  => 'PERL VERSION SUPPORT',
+      text   => [ split /\n/, $SUPPORT{$name} ],
     }
   ];
 }
