@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+5.015     2021-04-03 21:03:38-04:00 America/New_York
         - allow "perl-support" as a config alias for perl_support
           (because LOW LINE is the worst!)
 
