@@ -107,6 +107,8 @@ has weaver_config => (
 
 sub mvp_multivalue_args { qw(dont_compile) }
 
+sub mvp_aliases { return { 'perl-support' => 'perl_support' } }
+
 has dont_compile => (
   is      => 'ro',
   isa     => 'ArrayRef[Str]',

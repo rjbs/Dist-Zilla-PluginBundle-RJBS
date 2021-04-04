@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - allow "perl-support" as a config alias for perl_support
+          (because LOW LINE is the worst!)
 
 5.014     2021-04-03 17:22:04-04:00 America/New_York
         - require perl v5.20.0 (effectively already required by DZ anyway)
