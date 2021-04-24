@@ -131,7 +131,8 @@ has perl_support => (
 sub configure {
   my ($self) = @_;
 
-  $self->log_fatal("you must not specify both weaver_config and is_task")
+  # It'd be nice to have a Logger here... -- rjbs, 2021-04-24
+  die "you must not specify both weaver_config and is_task"
     if $self->is_task and $self->weaver_config ne '@RJBS';
 
   $self->add_plugins('Git::GatherDir');
