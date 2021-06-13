@@ -120,7 +120,7 @@ has package_name_version => (
   is      => 'ro',
   isa     => 'Bool',
   lazy    => 1,
-  default => sub { $_[0]->payload->{package_name_version} // 0 },
+  default => sub { $_[0]->payload->{package_name_version} // 1 },
 );
 
 has perl_support => (
