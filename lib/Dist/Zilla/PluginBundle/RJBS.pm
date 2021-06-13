@@ -64,23 +64,26 @@ use Dist::Zilla::PluginBundle::Basic;
 use Dist::Zilla::PluginBundle::Filter;
 use Dist::Zilla::PluginBundle::Git;
 
-{
-  package Dist::Zilla::Plugin::RJBSMisc;
-
+package Dist::Zilla::Plugin::RJBSMisc {
   use Moose;
-  with 'Dist::Zilla::Role::BeforeBuild';
+  with 'Dist::Zilla::Role::BeforeBuild',
+       'Dist::Zilla::Role::AfterBuild';
 
   has perl_support => (is => 'ro');
 
   sub before_build {
     my ($self) = @_;
 
-    if (grep {; /rjbs\@cpan\.org/ } $self->zilla->authors->@*) {
-      $self->log_fatal('Authors still contain rjbs@cpan.org!  Needs an update.');
-    }
-
     if (($self->perl_support // '') eq 'toolchain' && $self->package_name_version) {
       $self->log_fatal('This dist claims to be toolchain but uses "package NAME VERSION"');
+    }
+  }
+
+  sub after_build {
+    my ($self) = @_;
+
+    if (grep {; /rjbs\@cpan\.org/ } $self->zilla->authors->@*) {
+      $self->log('Authors still contain rjbs@cpan.org!  Needs an update.');
     }
   }
 }
