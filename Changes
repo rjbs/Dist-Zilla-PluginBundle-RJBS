@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - catch late-stage mistakes: old email address, toolchain support using
+          v5.12-ism
 
 5.016     2021-06-12 21:39:01-04:00 America/New_York
         - default to using "package NAME VERSION" syntax, because v5.12.0
