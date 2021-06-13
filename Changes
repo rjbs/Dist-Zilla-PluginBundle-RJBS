@@ -1,6 +1,11 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - default to using "package NAME VERSION" syntax, because v5.12.0
+          is well below my usual supported version; this will surely lead to
+          some mistakes in future releases, but those will get fixed as they
+          appear...
+        - add more x-y aliases for x_y
 
 5.015     2021-04-03 21:03:38-04:00 America/New_York
         - allow "perl-support" as a config alias for perl_support
