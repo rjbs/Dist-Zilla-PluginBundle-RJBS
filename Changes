@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+5.017     2021-06-13 08:42:19-04:00 America/New_York
         - catch late-stage mistakes: old email address, toolchain support using
           v5.12-ism
 
