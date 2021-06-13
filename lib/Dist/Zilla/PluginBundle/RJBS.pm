@@ -107,7 +107,17 @@ has weaver_config => (
 
 sub mvp_multivalue_args { qw(dont_compile) }
 
-sub mvp_aliases { return { 'perl-support' => 'perl_support' } }
+sub mvp_aliases {
+  return {
+    'is-task'       => 'is_task',
+    'major-version' => 'major_version',
+    'perl-support'  => 'perl_support',
+    'dont-compile'  => 'dont_compile',
+    'weaver-config' => 'weaver_config',
+    'manual-version'       => 'manual_version',
+    'package-name-version' => 'package_name_version',
+  }
+}
 
 has dont_compile => (
   is      => 'ro',
