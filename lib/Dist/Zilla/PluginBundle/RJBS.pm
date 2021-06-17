@@ -181,6 +181,7 @@ sub configure {
     [ PromptIfStale => 'CPAN-Outdated' => {
       phase => 'release',
       check_all_plugins => 1,
+      skip  => [ 'Dist::Zilla::Plugin::RJBSMisc' ],
       # check_all_prereqs => 1, # <-- not sure yet -- rjbs, 2013-09-23
     } ],
   );
