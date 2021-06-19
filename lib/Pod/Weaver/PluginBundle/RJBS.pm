@@ -84,7 +84,7 @@ not require a version of perl released fewer than ten years ago.
 $STOCK
 END
 
-$SUPPORT{longterm} = <<"END";
+$SUPPORT{'long-term'} = <<"END";
 This module has a long-term perl support period.  That means it will not
 require a version of perl released fewer than five years ago.
 
