@@ -67,9 +67,16 @@ use Dist::Zilla::PluginBundle::Git;
 package Dist::Zilla::Plugin::RJBSMisc {
   use Moose;
   with 'Dist::Zilla::Role::BeforeBuild',
-       'Dist::Zilla::Role::AfterBuild';
+       'Dist::Zilla::Role::AfterBuild',
+       'Dist::Zilla::Role::MetaProvider';
 
   has perl_support => (is => 'ro');
+
+  sub metadata {
+    my ($self) = @_;
+
+    return { x_rjbs_perl_support => $self->perl_support };
+  }
 
   sub before_build {
     my ($self) = @_;
