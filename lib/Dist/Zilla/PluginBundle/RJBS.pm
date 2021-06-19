@@ -10,6 +10,7 @@ with
 
 use v5.20.0;
 use experimental 'postderef'; # Not really an experiment anymore.
+use utf8;
 
 =head1 DESCRIPTION
 
@@ -83,6 +84,10 @@ package Dist::Zilla::Plugin::RJBSMisc {
 
     if (($self->perl_support // '') eq 'toolchain' && $self->package_name_version) {
       $self->log_fatal('This dist claims to be toolchain but uses "package NAME VERSION"');
+    }
+
+    unless (defined $self->perl_support) {
+      $self->log("❗️ did not set perl-support!");
     }
   }
 
