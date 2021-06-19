@@ -69,14 +69,27 @@ package Dist::Zilla::Plugin::RJBSMisc {
   use Moose;
   with 'Dist::Zilla::Role::BeforeBuild',
        'Dist::Zilla::Role::AfterBuild',
-       'Dist::Zilla::Role::MetaProvider';
+       'Dist::Zilla::Role::MetaProvider',
+       'Dist::Zilla::Role::PrereqSource';
 
   has perl_support => (is => 'ro');
+  has package_name_version => (is => 'ro');
 
   sub metadata {
     my ($self) = @_;
 
     return { x_rjbs_perl_support => $self->perl_support };
+  }
+
+  sub register_prereqs {
+    my ($self) = @_;
+
+    if ($self->package_name_version) {
+      $self->zilla->register_prereqs(
+        { phase => 'runtime', type => 'requires' },
+        perl => '5.012',
+      );
+    }
   }
 
   sub before_build {
@@ -293,7 +306,10 @@ sub configure {
 
   $self->add_plugins(
     [ RJBSMisc => {
-        perl_support => $self->perl_support,
+        map {; $_ => scalar $self->$_ } qw(
+          package_name_version
+          perl_support
+        )
     } ],
   );
 

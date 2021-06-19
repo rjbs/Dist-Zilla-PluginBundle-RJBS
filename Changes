@@ -3,6 +3,7 @@ Revision history for {{$dist->name}}
 {{$NEXT}}
         - add x_rjbs_perl_support to metadata (for use in my code review)
         - warn when perl-support is not set
+        - when package-name-version is true, it means v5.12 perl is required
 
 5.017     2021-06-13 08:42:19-04:00 America/New_York
         - catch late-stage mistakes: old email address, toolchain support using
