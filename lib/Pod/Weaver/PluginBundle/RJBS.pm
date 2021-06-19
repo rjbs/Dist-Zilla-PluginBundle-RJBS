@@ -70,6 +70,13 @@ Consensus|https://github.com/Perl-Toolchain-Gang/toolchain-site/blob/master/lanc
 of 2013.
 END
 
+$SUPPORT{none} = <<'END';
+This code is effectively abandonware.  Although releases will sometimes be made
+to update contact info or to fix packaging flaws, bug reports will mostly be
+ignored.  Feature requests are even more likely to be ignored.  (If someone
+takes up maintenance of this code, they will presumably remove this notice.)
+END
+
 my $STOCK = <<'END';
 Although it may work on older versions of perl, no guarantee is made that the
 minimum required version will not be increased.  The version may be increased
