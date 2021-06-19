@@ -167,12 +167,32 @@ has package_name_version => (
   is      => 'ro',
   isa     => 'Bool',
   lazy    => 1,
-  default => sub { $_[0]->payload->{package_name_version} // 1 },
+  default => sub { $_[0]->payload->{package_name_version}
+                // $_[0]->payload->{'package-name-version'}
+                // 1
+  },
 );
 
 has perl_support => (
   is      => 'ro',
-  default => sub { $_[0]->payload->{perl_support} },
+  lazy    => 1,
+  default => sub {
+    # XXX: Fix this better.
+    # See, we have all these mvp aliases to convert foo-bar to foo_bar, but
+    # those aliases aren't run on the bundle options when passed through a
+    # @Filter.  So:
+    #
+    # [@Filter]
+    # -bundle = @RJBS
+    # perl-support = no-mercy
+    #
+    # ...didn't work, because the payload had 'perl-support' and not
+    # 'perl_support'.  Probably this aliasing should happen during the @Filter
+    # process, but it's kind of a hot mess in here.  This key is the most
+    # important one, and this comment is here to remind me what happened if I
+    # ever hear this on some other library.
+    $_[0]->payload->{perl_support} // $_[0]->payload->{'perl-support'}
+  },
 );
 
 sub configure {
