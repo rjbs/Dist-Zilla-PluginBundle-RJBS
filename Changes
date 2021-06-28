@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - add "none" value for perl-support
+        - add [Git::Remote::Check]
 
 5.018     2021-06-18 22:28:44-04:00 America/New_York
         - add x_rjbs_perl_support to metadata (for use in my code review)
