@@ -72,13 +72,13 @@ package Dist::Zilla::Plugin::RJBSMisc {
        'Dist::Zilla::Role::MetaProvider',
        'Dist::Zilla::Role::PrereqSource';
 
-  has perl_support => (is => 'ro');
+  has perl_window => (is => 'ro');
   has package_name_version => (is => 'ro');
 
   sub metadata {
     my ($self) = @_;
 
-    return { x_rjbs_perl_support => $self->perl_support };
+    return { x_rjbs_perl_window => $self->perl_window };
   }
 
   sub register_prereqs {
@@ -95,12 +95,12 @@ package Dist::Zilla::Plugin::RJBSMisc {
   sub before_build {
     my ($self) = @_;
 
-    if (($self->perl_support // '') eq 'toolchain' && $self->package_name_version) {
+    if (($self->perl_window // '') eq 'toolchain' && $self->package_name_version) {
       $self->log_fatal('This dist claims to be toolchain but uses "package NAME VERSION"');
     }
 
-    unless (defined $self->perl_support) {
-      $self->log("❗️ did not set perl-support!");
+    unless (defined $self->perl_window) {
+      $self->log("❗️ did not set perl-window!");
     }
   }
 
@@ -161,7 +161,7 @@ sub mvp_aliases {
   return {
     'is-task'       => 'is_task',
     'major-version' => 'major_version',
-    'perl-support'  => 'perl_support',
+    'perl-window'   => 'perl_window',
     'dont-compile'  => 'dont_compile',
     'weaver-config' => 'weaver_config',
     'manual-version'       => 'manual_version',
@@ -187,7 +187,7 @@ has package_name_version => (
   },
 );
 
-has perl_support => (
+has perl_window => (
   is      => 'ro',
   lazy    => 1,
   default => sub {
@@ -198,14 +198,14 @@ has perl_support => (
     #
     # [@Filter]
     # -bundle = @RJBS
-    # perl-support = no-mercy
+    # perl-window = no-mercy
     #
-    # ...didn't work, because the payload had 'perl-support' and not
-    # 'perl_support'.  Probably this aliasing should happen during the @Filter
+    # ...didn't work, because the payload had 'perl-window' and not
+    # 'perl_window'.  Probably this aliasing should happen during the @Filter
     # process, but it's kind of a hot mess in here.  This key is the most
     # important one, and this comment is here to remind me what happened if I
     # ever hear this on some other library.
-    $_[0]->payload->{perl_support} // $_[0]->payload->{'perl-support'}
+    $_[0]->payload->{perl_window} // $_[0]->payload->{'perl-window'}
   },
 );
 
@@ -213,7 +213,7 @@ has primary_branch => (
   is      => 'ro',
   lazy    => 1,
   default => sub {
-    # XXX: Fix this better.  See matching comment in perl_support attr.
+    # XXX: Fix this better.  See matching comment in perl_window attr.
     return $_[0]->payload->{primary_branch}
         // $_[0]->payload->{'primary-branch'}
         // 'main'
@@ -318,7 +318,7 @@ sub configure {
   if ($self->is_task) {
     $self->add_plugins('TaskWeaver');
   } else {
-    our $perl_support = $self->perl_support;
+    our $perl_window = $self->perl_window;
     $self->add_plugins([
       PodWeaver => {
         config_plugin => $self->weaver_config,
@@ -331,7 +331,7 @@ sub configure {
     [ RJBSMisc => {
         map {; $_ => scalar $self->$_ } qw(
           package_name_version
-          perl_support
+          perl_window
         )
     } ],
   );

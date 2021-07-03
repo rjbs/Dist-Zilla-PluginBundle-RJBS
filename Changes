@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - renamed "perl-support" to "perl-window"; the word "support" makes it
+          sounds like support is guaranteed at all, which it never was
 
 5.019     2021-06-27 22:10:32-04:00 America/New_York
         - add "none" value for perl-support
