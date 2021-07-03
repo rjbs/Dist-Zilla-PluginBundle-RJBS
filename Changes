@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+5.020     2021-07-03 13:29:55-04:00 America/New_York
         - renamed "perl-support" to "perl-window"; the word "support" makes it
           sounds like support is guaranteed at all, which it never was
 
