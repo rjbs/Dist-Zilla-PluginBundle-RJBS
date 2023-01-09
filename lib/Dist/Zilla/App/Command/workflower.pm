@@ -78,7 +78,11 @@ sub _perl_versions_to_test ($self) {
 __DATA__
 ___[ workflow.yml ]___
 name: "multiperl test"
-on: [ push, pull_request ]
+on:
+  push:
+    branches: "*"
+    tags-ignore: "*"
+  pull_request: ~
 
 # FUTURE ENHANCEMENT(s):
 # * install faster (see below)
