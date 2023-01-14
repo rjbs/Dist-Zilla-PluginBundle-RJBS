@@ -64,7 +64,9 @@ sub _perl_versions_to_test ($self) {
 
   my $merged = $prereqs->merged_requires;
 
-  my @test = qw(latest);
+  # I used to include "latest" because I thought it was "blead", but it isn't.
+  # It's just v5.36. -- rjbs, 2023-01-13
+  my @test;
 
   for (my $i = 36; $i >= 8; $i -= 2) {
     last unless $merged->accepts_module(perl => "v5.$i");
