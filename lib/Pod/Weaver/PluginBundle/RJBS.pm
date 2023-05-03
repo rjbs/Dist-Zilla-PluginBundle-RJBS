@@ -61,15 +61,6 @@ sub mvp_bundle_config {
 
 my %WINDOW;
 
-$WINDOW{toolchain} = <<'END';
-This module is part of CPAN toolchain, or is treated as such.  As such, it
-follows the agreement of the Perl Toolchain Gang to require no newer version of
-perl than one released in the last ten years.  This version may change by
-agreement of the Toolchain Gang, but for now is governed by the L<Lancaster
-Consensus|https://github.com/Perl-Toolchain-Gang/toolchain-site/blob/master/lancaster-consensus.md>
-of 2013 and the Lyon Amendment of 2023 (described at the linked-to document).
-END
-
 $WINDOW{none} = <<'END';
 This code is effectively abandonware.  Although releases will sometimes be made
 to update contact info or to fix packaging flaws, bug reports will mostly be
@@ -84,6 +75,17 @@ Although it may work on older versions of perl, no guarantee is made that the
 minimum required version will not be increased.  The version may be increased
 for any reason, and there is no promise that patches will be accepted to lower
 the minimum required perl.
+END
+
+$WINDOW{toolchain} = <<"END";
+This module is part of CPAN toolchain, or is treated as such.  As such, it
+follows the agreement of the Perl Toolchain Gang to require no newer version of
+perl than one released in the last ten years.  This version may change by
+agreement of the Toolchain Gang, but for now is governed by the L<Lancaster
+Consensus|https://github.com/Perl-Toolchain-Gang/toolchain-site/blob/master/lancaster-consensus.md>
+of 2013 and the Lyon Amendment of 2023 (described at the linked-to document).
+
+$STOCK
 END
 
 $WINDOW{extreme} = <<"END";
