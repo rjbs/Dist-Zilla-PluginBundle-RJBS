@@ -95,10 +95,6 @@ package Dist::Zilla::Plugin::RJBSMisc {
   sub before_build {
     my ($self) = @_;
 
-    if (($self->perl_window // '') eq 'toolchain' && $self->package_name_version) {
-      $self->log_fatal('This dist claims to be toolchain but uses "package NAME VERSION"');
-    }
-
     unless (defined $self->perl_window) {
       $self->log("❗️ did not set perl-window!");
     }
