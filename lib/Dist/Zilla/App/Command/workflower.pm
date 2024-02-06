@@ -96,7 +96,7 @@ jobs:
       fail-fast: false
     steps:
       - name: Check out repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install cpanminus
         run: |
           curl https://cpanmin.us/ > /tmp/cpanm
@@ -117,7 +117,7 @@ jobs:
           dzil build --in Dist-To-Test
           tar zcvf Dist-To-Test.tar.gz Dist-To-Test
       - name: Upload tarball
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Dist-To-Test.tar.gz
           path: Dist-To-Test.tar.gz
@@ -142,7 +142,7 @@ jobs:
 
     steps:
       - name: Download tarball
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: Dist-To-Test.tar.gz
       - name: Extract tarball
