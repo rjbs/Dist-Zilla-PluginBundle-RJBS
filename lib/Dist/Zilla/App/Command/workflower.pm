@@ -3,6 +3,8 @@ package Dist::Zilla::App::Command::workflower;
 
 use Dist::Zilla::Pragmas;
 
+use v5.36.0;
+
 use Dist::Zilla::App -command;
 
 use Sub::Exporter::ForMethods ();
@@ -31,9 +33,7 @@ sub opt_spec {
 
 sub abstract { "install rjbs's usual GitHub Actions workflow" }
 
-sub execute {
-  my ($self, $opt, $arg) = @_;
-
+sub execute ($self, $opt, $arg) {
   my $template = $self->section_data('workflow.yml')->$*;
   my $versions = sprintf '[ %s ]',
                   join q{, }, map {; qq{"$_"} } $self->_perl_versions_to_test;

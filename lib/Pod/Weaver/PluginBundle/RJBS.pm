@@ -1,5 +1,4 @@
-use v5.26.0;
-use warnings;
+use v5.36.0;
 package Pod::Weaver::PluginBundle::RJBS;
 # ABSTRACT: RJBS's default Pod::Weaver config
 
@@ -14,11 +13,9 @@ I<Roughly> equivalent to:
 =cut
 
 use Pod::Weaver::Config::Assembler;
-sub _exp { Pod::Weaver::Config::Assembler->expand_package($_[0]) }
+sub _exp ($self) { Pod::Weaver::Config::Assembler->expand_package($self) }
 
-sub mvp_bundle_config {
-  my ($self, $arg) = @_;
-
+sub mvp_bundle_config ($self, $arg) {
   my @plugins;
   push @plugins, (
     [ '@RJBS/CorePrep',       _exp('@CorePrep'),        {} ],
@@ -124,9 +121,7 @@ $WINDOW{'no-mercy'} = <<~"END";
   no promise that patches will be accepted to lower the minimum required perl.
   END
 
-sub _perl_window_plugin {
-  my ($self, $name) = @_;
-
+sub _perl_window_plugin ($self, $name) {
   Carp::confess("unknown perl window $name") unless exists $WINDOW{$name};
 
   return [

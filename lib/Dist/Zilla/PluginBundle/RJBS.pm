@@ -8,8 +8,7 @@ with
     'Dist::Zilla::Role::PluginBundle::PluginRemover' => { -version => '0.103' },
     'Dist::Zilla::Role::PluginBundle::Config::Slicer';
 
-use v5.20.0;
-use experimental 'postderef'; # Not really an experiment anymore.
+use v5.36.0;
 use utf8;
 
 =head1 DESCRIPTION
@@ -72,18 +71,16 @@ package Dist::Zilla::Plugin::RJBSMisc {
        'Dist::Zilla::Role::MetaProvider',
        'Dist::Zilla::Role::PrereqSource';
 
+  use v5.36.0;
+
   has perl_window => (is => 'ro');
   has package_name_version => (is => 'ro');
 
-  sub metadata {
-    my ($self) = @_;
-
+  sub metadata ($self) {
     return { x_rjbs_perl_window => $self->perl_window };
   }
 
-  sub register_prereqs {
-    my ($self) = @_;
-
+  sub register_prereqs ($self) {
     if ($self->package_name_version) {
       $self->zilla->register_prereqs(
         { phase => 'runtime', type => 'requires' },
@@ -92,17 +89,13 @@ package Dist::Zilla::Plugin::RJBSMisc {
     }
   }
 
-  sub before_build {
-    my ($self) = @_;
-
+  sub before_build ($self, @) {
     unless (defined $self->perl_window) {
       $self->log("❗️ did not set perl-window!");
     }
   }
 
-  sub after_build {
-    my ($self) = @_;
-
+  sub after_build ($self, @) {
     if (grep {; /rjbs\@cpan\.org/ } $self->zilla->authors->@*) {
       $self->log('Authors still contain rjbs@cpan.org!  Needs an update.');
     }
@@ -113,42 +106,42 @@ has manual_version => (
   is      => 'ro',
   isa     => 'Bool',
   lazy    => 1,
-  default => sub { $_[0]->payload->{manual_version} },
+  default => sub ($self) { $self->payload->{manual_version} },
 );
 
 has major_version => (
   is      => 'ro',
   isa     => 'Int',
   lazy    => 1,
-  default => sub { $_[0]->payload->{version} || 0 },
+  default => sub ($self) { $self->payload->{version} || 0 },
 );
 
 has is_task => (
   is      => 'ro',
   isa     => 'Bool',
   lazy    => 1,
-  default => sub { $_[0]->payload->{task} },
+  default => sub ($self) { $self->payload->{task} },
 );
 
 has github_issues => (
   is      => 'ro',
   isa     => 'Bool',
   lazy    => 1,
-  default => sub { $_[0]->payload->{github_issues} // 1 },
+  default => sub ($self) { $self->payload->{github_issues} // 1 },
 );
 
 has homepage => (
   is      => 'ro',
   isa     => 'Str',
   lazy    => 1,
-  default => sub { $_[0]->payload->{homepage} // '' },
+  default => sub ($self) { $self->payload->{homepage} // '' },
 );
 
 has weaver_config => (
   is      => 'ro',
   isa     => 'Str',
   lazy    => 1,
-  default => sub { $_[0]->payload->{weaver_config} || '@RJBS' },
+  default => sub ($self) { $self->payload->{weaver_config} || '@RJBS' },
 );
 
 sub mvp_multivalue_args { qw(dont_compile) }
@@ -170,15 +163,15 @@ has dont_compile => (
   is      => 'ro',
   isa     => 'ArrayRef[Str]',
   lazy    => 1,
-  default => sub { $_[0]->payload->{dont_compile} || [] },
+  default => sub ($self) { $self->payload->{dont_compile} || [] },
 );
 
 has package_name_version => (
   is      => 'ro',
   isa     => 'Bool',
   lazy    => 1,
-  default => sub { $_[0]->payload->{package_name_version}
-                // $_[0]->payload->{'package-name-version'}
+  default => sub ($self) { $self->payload->{package_name_version}
+                // $self->payload->{'package-name-version'}
                 // 1
   },
 );
@@ -186,7 +179,7 @@ has package_name_version => (
 has perl_window => (
   is      => 'ro',
   lazy    => 1,
-  default => sub {
+  default => sub ($self) {
     # XXX: Fix this better.
     # See, we have all these mvp aliases to convert foo-bar to foo_bar, but
     # those aliases aren't run on the bundle options when passed through a
@@ -201,24 +194,22 @@ has perl_window => (
     # process, but it's kind of a hot mess in here.  This key is the most
     # important one, and this comment is here to remind me what happened if I
     # ever hear this on some other library.
-    $_[0]->payload->{perl_window} // $_[0]->payload->{'perl-window'}
+    $self->payload->{perl_window} // $self->payload->{'perl-window'}
   },
 );
 
 has primary_branch => (
   is      => 'ro',
   lazy    => 1,
-  default => sub {
+  default => sub ($self) {
     # XXX: Fix this better.  See matching comment in perl_window attr.
-    return $_[0]->payload->{primary_branch}
-        // $_[0]->payload->{'primary-branch'}
+    return $self->payload->{primary_branch}
+        // $self->payload->{'primary-branch'}
         // 'main'
   },
 );
 
-sub configure {
-  my ($self) = @_;
-
+sub configure ($self) {
   # It'd be nice to have a Logger here... -- rjbs, 2021-04-24
   die "you must not specify both weaver_config and is_task"
     if $self->is_task and $self->weaver_config ne '@RJBS';

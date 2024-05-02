@@ -4,6 +4,8 @@ package Dist::Zilla::Plugin::UploadToCPAN::OnePassword;
 use Moose;
 extends 'Dist::Zilla::Plugin::UploadToCPAN';
 
+use v5.36.0;
+
 use JSON::MaybeXS ();
 
 has op_item_id => (
@@ -26,8 +28,7 @@ has op_items => (
   is => 'ro',
   isa => 'HashRef',
   lazy    => 1,
-  default => sub {
-    my ($self) = @_;
+  default => sub ($self) {
     my $item_id = $self->op_item_id;
 
     confess "bogus-looking 1Password item id"
@@ -43,18 +44,7 @@ has op_items => (
   },
 );
 
-has '+username' => (
-  default => sub {
-    my ($self) = @_;
-    $self->op_items->{username};
-  }
-);
-
-has '+password' => (
-  default => sub {
-    my ($self) = @_;
-    $self->op_items->{password};
-  }
-);
+has '+username' => (default => sub ($self) { $self->op_items->{username} });
+has '+password' => (default => sub ($self) { $self->op_items->{password} });
 
 1;
