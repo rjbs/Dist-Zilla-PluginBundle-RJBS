@@ -66,7 +66,7 @@ sub _perl_versions_to_test ($self) {
 
   my @test = ('devel');
 
-  for (my $i = 36; $i >= 8; $i -= 2) {
+  for (my $i = 38; $i >= 8; $i -= 2) {
     last unless $merged->accepts_module(perl => "v5.$i");
     push @test, "5.$i";
   }
