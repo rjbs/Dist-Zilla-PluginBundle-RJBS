@@ -2,6 +2,7 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
         - improve the efficiency of GitHub Actions workflow
+        - add UploadToCPAN::OnePassword, which might be a total disaster
 
 5.025     2023-11-20 19:58:30-05:00 America/New_York
         - There is no longer any reason for "toolchain" perl-window to forbid
