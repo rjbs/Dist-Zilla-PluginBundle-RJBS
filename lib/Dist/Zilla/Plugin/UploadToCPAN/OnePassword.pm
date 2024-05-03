@@ -6,7 +6,7 @@ extends 'Dist::Zilla::Plugin::UploadToCPAN';
 
 use v5.36.0;
 
-use JSON::MaybeXS ();
+use Password::OnePassword::OPCLI;
 
 has op_item_id => (
   is  => 'ro',
@@ -24,7 +24,7 @@ has op_item_id => (
   },
 );
 
-has op_items => (
+has _op_item_fields => (
   is => 'ro',
   isa => 'HashRef',
   lazy    => 1,
@@ -34,17 +34,23 @@ has op_items => (
     confess "bogus-looking 1Password item id"
       unless $item_id =~ /\A\p{PosixAlnum}+\z/;
 
-    my $json = `op item get --format json $item_id --fields username,password`;
+    my $struct = Password::OnePassword::OPCLI->get_item($item_id);
 
-    my $field_aref = JSON::MaybeXS->new->decode($json);
+    my $field_aref = $struct->{fields};
+    my %fields = map {; $_->{id} => $_->{value} } @$field_aref;
 
-    my %item = map {; $_->{id} => $_->{value} } @$field_aref;
-
-    \%item;
+    return \%fields;
   },
 );
 
-has '+username' => (default => sub ($self) { $self->op_items->{username} });
-has '+password' => (default => sub ($self) { $self->op_items->{password} });
+has '+username' => (default => sub ($self) {
+  $self->_op_item_fields->{username}
+    // Carp::croak("no username field in 1Password credential")
+});
+
+has '+password' => (default => sub ($self) {
+  $self->_op_item_fields->{password}
+    // Carp::croak("no password field in 1Password credential")
+});
 
 1;
