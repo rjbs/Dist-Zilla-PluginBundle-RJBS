@@ -2,6 +2,11 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+5.029     2024-05-25 18:29:27-04:00 America/New_York
+        - drop minimum perl version to v5.34.0, so that it can be installed on
+          the current ubuntu-latest with stock perl, to power the "dzil
+          workflower" based workflower setup
+
 5.028     2024-05-25 12:30:42-04:00 America/New_York
         - eliminate UploadToCPAN::OnePassword in favor of allowing a
           OnePasswordLogin stash in ~/.dzil/config.ini
