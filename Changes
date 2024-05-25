@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+5.028     2024-05-25 12:30:42-04:00 America/New_York
         - eliminate UploadToCPAN::OnePassword in favor of allowing a
           OnePasswordLogin stash in ~/.dzil/config.ini
 
