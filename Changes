@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - eliminate UploadToCPAN::OnePassword in favor of allowing a
+          OnePasswordLogin stash in ~/.dzil/config.ini
 
 5.027     2024-05-25 11:24:43-04:00 America/New_York
         - move 1Password-reading code into a library
