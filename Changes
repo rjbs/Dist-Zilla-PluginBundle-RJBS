@@ -1,7 +1,11 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
-        - move 1Password-reading code into a library (not yet published)
+
+5.027     2024-05-25 11:24:43-04:00 America/New_York
+        - move 1Password-reading code into a library
+        - the UploadToCPAN::OnePassword plugin is kind of a gross hack that
+          should get replaced in the future
 
 5.026     2024-05-02 15:31:38-04:00 America/New_York (TRIAL RELEASE)
         - improve the efficiency of GitHub Actions workflow
