@@ -8,7 +8,8 @@ with
     'Dist::Zilla::Role::PluginBundle::PluginRemover' => { -version => '0.103' },
     'Dist::Zilla::Role::PluginBundle::Config::Slicer';
 
-use v5.36.0;
+use v5.34.0;
+use Dist::Zilla::Pragmas;
 use utf8;
 
 =head1 DESCRIPTION
@@ -71,7 +72,8 @@ package Dist::Zilla::Plugin::RJBSMisc {
        'Dist::Zilla::Role::MetaProvider',
        'Dist::Zilla::Role::PrereqSource';
 
-  use v5.36.0;
+  use v5.34.0;
+  use Dist::Zilla::Pragmas;
 
   has perl_window => (is => 'ro');
   has package_name_version => (is => 'ro');

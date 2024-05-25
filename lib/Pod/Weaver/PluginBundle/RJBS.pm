@@ -1,4 +1,5 @@
-use v5.36.0;
+use v5.34.0;
+use Dist::Zilla::Pragmas;
 package Pod::Weaver::PluginBundle::RJBS;
 # ABSTRACT: RJBS's default Pod::Weaver config
 

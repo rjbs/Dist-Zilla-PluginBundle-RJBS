@@ -1,9 +1,8 @@
 package Dist::Zilla::App::Command::workflower;
 # ABSTRACT: install rjbs's usual GitHub Actions workflow
 
+use v5.34.0;
 use Dist::Zilla::Pragmas;
-
-use v5.36.0;
 
 use Dist::Zilla::App -command;
 
