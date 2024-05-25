@@ -43,14 +43,33 @@ has _op_item_fields => (
   },
 );
 
-has '+username' => (default => sub ($self) {
+sub username ($self) {
   $self->_op_item_fields->{username}
     // Carp::croak("no username field in 1Password credential")
-});
+}
 
-has '+password' => (default => sub ($self) {
+sub password ($self) {
   $self->_op_item_fields->{password}
     // Carp::croak("no password field in 1Password credential")
-});
+}
+
+# Overriding this method is just more of a show of how this plugin is kind of a
+# grody hack.  The version of this method in UploadToCPAN does the checks in a
+# try block with no catch, so it wasn't saying "getting pw from 1P is throwing
+# an error, it was saying "you need to supply a password".  Ugh.
+#
+# I think the real solution is to use the normal UploadToCPAN but with a
+# smarter stash. -- rjbs, 2024-05-25
+sub before_release {
+  my $self = shift;
+
+  my $problem;
+
+  for my $attr (qw(username password)) {
+    unless (length $self->$attr) {
+      $self->log_fatal(['You need to supply a %s', $attr]);
+    }
+  }
+}
 
 1;
