@@ -230,15 +230,12 @@ sub configure ($self) {
     } ],
   );
 
-  my $use_1P = length $ENV{DZIL_PAUSE_1P_ITEM_ID};
-
   $self->add_bundle('@Filter', {
     '-bundle' => '@Basic',
     '-remove' => [
       'GatherDir',
       'ExtraTests',
       'MakeMaker',
-      ($use_1P ? 'UploadToCPAN' : ()),
     ],
   });
 
@@ -248,12 +245,6 @@ sub configure ($self) {
       eumm_version  =>  6.78, # Stop using -w when running tests.
     }
   ]);
-
-  if ($use_1P) {
-    $self->add_plugins([
-      'UploadToCPAN::OnePassword' => {},
-    ]);
-  }
 
   $self->add_plugins('AutoPrereqs');
 
