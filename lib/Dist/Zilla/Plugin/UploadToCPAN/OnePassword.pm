@@ -34,7 +34,7 @@ has _op_item_fields => (
     confess "bogus-looking 1Password item id"
       unless $item_id =~ /\A\p{PosixAlnum}+\z/;
 
-    my $struct = Password::OnePassword::OPCLI->get_item($item_id);
+    my $struct = Password::OnePassword::OPCLI->new->get_item($item_id);
 
     my $field_aref = $struct->{fields};
     my %fields = map {; $_->{id} => $_->{value} } @$field_aref;
