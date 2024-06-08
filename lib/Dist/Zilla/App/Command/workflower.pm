@@ -22,8 +22,8 @@ This command will make sure that F<.github/workflows> exists and contains
 F<multiperl-test.yml>, and that I<that> contains the latest version of RJBS's
 usual workflow for testing Dist::Zilla-built dists.
 
-The only customization, for now, is that the list of Perl versions tested will
-not include anything before the minimum perl required for the dist being built.
+This file is static, and should only need to be rebuilt when C<workflower>
+itself has had notable changes.
 
 =cut
 
@@ -34,10 +34,6 @@ sub abstract { "install rjbs's usual GitHub Actions workflow" }
 
 sub execute ($self, $opt, $arg) {
   my $template = $self->section_data('workflow.yml')->$*;
-  my $versions = sprintf '[ %s ]',
-                  join q{, }, map {; qq{"$_"} } $self->_perl_versions_to_test;
-
-  $template =~ s/%%VERSIONS%%/$versions/g;
 
   my $workflow_dir = path(".github/workflows");
   $workflow_dir->mkpath;
@@ -46,31 +42,6 @@ sub execute ($self, $opt, $arg) {
 
   $self->zilla->log("Workflow installed.");
   return;
-}
-
-sub _perl_versions_to_test ($self) {
-  my $zilla = $self->zilla;
-
-  $_->before_build       for $zilla->plugins_with(-BeforeBuild)->@*;
-  $_->gather_files       for $zilla->plugins_with(-FileGatherer)->@*;
-  $_->set_file_encodings for $zilla->plugins_with(-EncodingProvider)->@*;
-  $_->prune_files        for $zilla->plugins_with(-FilePruner)->@*;
-  $_->munge_files        for $zilla->plugins_with(-FileMunger)->@*;
-  $_->register_prereqs   for $zilla->plugins_with(-PrereqSource)->@*;
-
-  my $prereqs = $zilla->prereqs;
-  $prereqs->finalize;
-
-  my $merged = $prereqs->merged_requires;
-
-  my @test = ('devel');
-
-  for (my $i = 38; $i >= 8; $i -= 2) {
-    last unless $merged->accepts_module(perl => "v5.$i");
-    push @test, "5.$i";
-  }
-
-  return @test;
 }
 
 1;
@@ -86,9 +57,12 @@ on:
 jobs:
   build-tarball:
     runs-on: ubuntu-latest
+    outputs:
+      perl-versions: ${{ steps.build-archive.outputs.perl-versions }}
     steps:
     - name: Build archive
-      uses: rjbs/dzil-build@v0
+      id: build-archive
+      uses: rjbs/dzil-build@main
 
   multiperl-test:
     needs: build-tarball
@@ -97,7 +71,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        perl-version: %%VERSIONS%%
+        perl-version: ${{ fromJson(needs.build-tarball.outputs.perl-versions) }}
 
     container:
       image: perldocker/perl-tester:${{ matrix.perl-version }}

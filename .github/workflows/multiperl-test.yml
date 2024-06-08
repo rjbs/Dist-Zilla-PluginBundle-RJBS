@@ -8,9 +8,12 @@ on:
 jobs:
   build-tarball:
     runs-on: ubuntu-latest
+    outputs:
+      perl-versions: ${{ steps.build-archive.outputs.perl-versions }}
     steps:
-      - name: Build archive
-        uses: rjbs/dzil-build@v0
+    - name: Build archive
+      id: build-archive
+      uses: rjbs/dzil-build@main
 
   multiperl-test:
     needs: build-tarball
@@ -19,11 +22,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        perl-version: [ "devel", "5.38", "5.36", "5.34" ]
+        perl-version: ${{ fromJson(needs.build-tarball.outputs.perl-versions) }}
 
     container:
       image: perldocker/perl-tester:${{ matrix.perl-version }}
 
     steps:
-      - name: Test distribution
-        uses: rjbs/test-perl-dist@v0
+    - name: Test distribution
+      uses: rjbs/test-perl-dist@v0
