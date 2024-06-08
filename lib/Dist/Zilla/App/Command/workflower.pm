@@ -62,7 +62,7 @@ jobs:
     steps:
     - name: Build archive
       id: build-archive
-      uses: rjbs/dzil-build@main
+      uses: rjbs/dzil-build@v0
 
   multiperl-test:
     needs: build-tarball
