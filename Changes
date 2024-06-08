@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+5.032     2024-06-08 11:21:44-04:00 America/New_York
         - updates to "dzil workflower":
           - use reusable actions for build and test
           - compute range of perls to test at test time, not in workflow
