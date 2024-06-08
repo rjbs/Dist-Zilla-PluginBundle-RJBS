@@ -1,7 +1,10 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
-        - update "dzil workflower" to use reusable actions for build and test
+        - updates to "dzil workflower":
+          - use reusable actions for build and test
+          - compute range of perls to test at test time, not in workflow
+          - permit run on workflow_dispatch
 
 5.031     2024-06-02 22:11:00-04:00 America/New_York
         - update "dzil workflower" to install prereqs with cpm, not cpanm
