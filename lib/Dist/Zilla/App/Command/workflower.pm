@@ -49,6 +49,7 @@ __DATA__
 ___[ workflow.yml ]___
 name: "multiperl test"
 on:
+  workflow_dispatch: ~
   push:
     branches: "*"
     tags-ignore: "*"
