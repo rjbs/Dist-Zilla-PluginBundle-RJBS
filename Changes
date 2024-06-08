@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - update "dzil workflower" to use reusable actions for build and test
 
 5.031     2024-06-02 22:11:00-04:00 America/New_York
         - update "dzil workflower" to install prereqs with cpm, not cpanm
