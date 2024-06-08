@@ -87,8 +87,8 @@ jobs:
   build-tarball:
     runs-on: ubuntu-latest
     steps:
-      - name: Build archive
-        uses: rjbs/dzil-build@v0
+    - name: Build archive
+      uses: rjbs/dzil-build@v0
 
   multiperl-test:
     needs: build-tarball
@@ -103,5 +103,5 @@ jobs:
       image: perldocker/perl-tester:${{ matrix.perl-version }}
 
     steps:
-      - name: Test distribution
-        uses: rjbs/test-perl-dist@v0
+    - name: Test distribution
+      uses: rjbs/test-perl-dist@v0
