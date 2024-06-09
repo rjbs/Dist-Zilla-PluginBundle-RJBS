@@ -39,6 +39,14 @@ sub execute ($self, $opt, $arg) {
   $workflow_dir->mkpath;
 
   my $target = $workflow_dir->child('dzil-matrix.yaml');
+
+  if ($target->exists) {
+    if (grep {; /\A\s*#+\s*do-not-regen/ } $target->lines) {
+      $self->zilla->log('Workflow contains "do-not-regen", aborting.');
+      return;
+    }
+  }
+
   my $old_digest = $target->exists ? $target->digest : undef;
 
   if ($old_digest) {
