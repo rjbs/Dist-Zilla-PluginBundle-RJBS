@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - updates to "dzil workflower":
+          - use an even more compact resuable workflow
+          - commit the new workflow file on update
 
 5.032     2024-06-08 11:21:44-04:00 America/New_York
         - updates to "dzil workflower":
