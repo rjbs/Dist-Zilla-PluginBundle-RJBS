@@ -33,21 +33,37 @@ sub opt_spec {
 sub abstract { "install rjbs's usual GitHub Actions workflow" }
 
 sub execute ($self, $opt, $arg) {
-  my $template = $self->section_data('workflow.yml')->$*;
+  my $content = $self->section_data('workflow.yml')->$*;
 
   my $workflow_dir = path(".github/workflows");
   $workflow_dir->mkpath;
 
-  $workflow_dir->child('multiperl-test.yml')->spew_utf8($template);
+  my $target = $workflow_dir->child('dzil-matrix.yaml');
+  my $old_digest = $target->exists ? $target->digest : undef;
 
-  $self->zilla->log("Workflow installed.");
+  if ($old_digest) {
+    require Digest::SHA;
+    if (Digest::SHA::sha256_hex($content) eq $old_digest) {
+      $self->zilla->log("Workflow already present and up to date.");
+      return;
+    }
+  }
+
+  $target->spew_utf8($content);
+  my $verb = $old_digest ? "update" : "create";
+  my $message = "Workflow ${verb}d.";
+  $self->zilla->log($message);
+
+  system("git", "add", "$target");
+  system("git", "commit", "-m", "$target: $verb", "$target");
+
   return;
 }
 
 1;
 __DATA__
 ___[ workflow.yml ]___
-name: "multiperl test"
+name: "dzil matrix"
 on:
   workflow_dispatch: ~
   push:
@@ -56,27 +72,6 @@ on:
   pull_request: ~
 
 jobs:
-  build-tarball:
-    runs-on: ubuntu-latest
-    outputs:
-      perl-versions: ${{ steps.build-archive.outputs.perl-versions }}
-    steps:
-    - name: Build archive
-      id: build-archive
-      uses: rjbs/dzil-build@v0
-
-  multiperl-test:
-    needs: build-tarball
-    runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        perl-version: ${{ fromJson(needs.build-tarball.outputs.perl-versions) }}
-
-    container:
-      image: perldocker/perl-tester:${{ matrix.perl-version }}
-
-    steps:
-    - name: Test distribution
-      uses: rjbs/test-perl-dist@v0
+  build-and-test:
+    name: dzil-matrix
+    uses: rjbs/dzil-actions/.github/workflows/dzil-matrix.yaml@v0
