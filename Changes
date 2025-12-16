@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - bring back the use of [Test::Compile]
 
 5.033     2025-05-25 21:51:56-04:00 America/New_York
         - updates to "dzil workflower":

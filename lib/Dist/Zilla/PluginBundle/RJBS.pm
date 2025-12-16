@@ -302,6 +302,13 @@ sub configure ($self) {
   );
 
   $self->add_plugins(
+    [ 'Test::Compile' => {
+      ($self->dont_compile->@* ? (skip => $self->dont_compile) : ()),
+      bail_out_on_fail => 1,
+    } ],
+  );
+
+  $self->add_plugins(
     [ Prereqs => 'TestMoreWithSubtests' => {
       -phase => 'test',
       -type  => 'requires',
