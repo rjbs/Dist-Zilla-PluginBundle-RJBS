@@ -305,6 +305,7 @@ sub configure ($self) {
     [ 'Test::Compile' => {
       ($self->dont_compile->@* ? (skip => $self->dont_compile) : ()),
       bail_out_on_fail => 1,
+      xt_mode => 1,
     } ],
   );
 
