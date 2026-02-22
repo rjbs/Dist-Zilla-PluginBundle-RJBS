@@ -354,7 +354,14 @@ sub configure ($self) {
     ],
   });
 
-  $self->add_plugins('Git::Contributors');
+  $self->add_plugins(
+    [ 'Git::Contributors' => {
+      remove => [
+        'claude@anthropic.com',
+        'noreply@anthropic.com',
+      ],
+    } ]
+  );
 }
 
 __PACKAGE__->meta->make_immutable;

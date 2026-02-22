@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - remove Claude from the list of contributors even when present
+          in commits
 
 5.035     2025-12-19 09:31:53+11:00 Australia/Melbourne
         - move the compile test into "xt mode"
