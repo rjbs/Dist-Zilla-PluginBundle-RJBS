@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+5.036     2026-02-22 18:57:41-05:00 America/New_York
         - remove Claude from the list of contributors even when present
           in commits
 
